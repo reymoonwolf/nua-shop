@@ -1253,21 +1253,300 @@
     .success-icon-box { width: 64px; height: 64px; border-radius: 50%; background: var(--green-bg); border: 2px solid var(--green-border); color: var(--green-accent); display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 16px; }
     .success-order-box { background: #FAF8F5; border: 1px solid var(--coal-border); border-radius: var(--radius-md); padding: 16px; text-align: left; margin: 20px 0; font-size: 13px; display: flex; flex-direction: column; gap: 6px; }
 
-    /* Cart Slide Drawer */
-    .cart-drawer-overlay { position: fixed; inset: 0; background: rgba(33, 26, 18, 0.5); backdrop-filter: blur(8px); z-index: 2100; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    /* Cart Slide Drawer — Premium Overhaul */
+    .cart-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(33, 26, 18, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 2100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
     .cart-drawer-overlay.is-open { opacity: 1; pointer-events: auto; }
-    .cart-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: 100%; max-width: 440px; background: #FFFFFF; border-left: 1px solid var(--coal-border); z-index: 2101; display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+    
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 460px;
+      background: var(--bg-main);
+      border-left: 1px solid var(--coal-border);
+      z-index: 2101;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: -10px 0 40px rgba(33, 26, 18, 0.15);
+    }
     .cart-drawer-overlay.is-open .cart-drawer { transform: translateX(0); }
-    .drawer-header { padding: 20px 24px; border-bottom: 1px solid var(--coal-border); display: flex; justify-content: space-between; align-items: center; background: var(--bg-main); }
-    .drawer-items { flex-grow: 1; overflow-y: auto; padding: 20px 24px; display: flex; flex-direction: column; gap: 14px; }
-    .cart-item { display: flex; gap: 12px; background: #FAF8F5; border: 1px solid var(--coal-border); border-radius: var(--radius-md); padding: 12px; position: relative; }
-    .cart-item-img { width: 64px; height: 64px; border-radius: var(--radius-sm); object-fit: cover; }
-    .cart-item-info { flex-grow: 1; display: flex; flex-direction: column; }
-    .cart-item-title { font-size: 13.5px; font-weight: 700; padding-right: 20px; }
-    .cart-item-duration { font-size: 11.5px; color: var(--terra); font-weight: 600; }
-    .cart-item-price { font-size: 14.5px; font-weight: 700; }
-    .cart-item-remove { position: absolute; top: 8px; right: 8px; background: transparent; border: none; color: var(--coal-muted); cursor: pointer; }
-    .drawer-footer { padding: 20px 24px; border-top: 1px solid var(--coal-border); background: #FAF8F5; display: flex; flex-direction: column; gap: 10px; }
+    
+    .drawer-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--coal-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #FFFFFF;
+    }
+    .drawer-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .drawer-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--coal);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .drawer-badge {
+      background: var(--terra-light);
+      color: var(--terra);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(176, 80, 30, 0.2);
+    }
+    .drawer-close-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #FAF8F5;
+      border: 1px solid var(--coal-border);
+      color: var(--coal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      transition: var(--transition);
+    }
+    .drawer-close-btn:hover {
+      background: var(--coal);
+      color: #FFFFFF;
+      transform: rotate(90deg);
+    }
+
+    .drawer-items {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* Cart Item Card */
+    .cart-item {
+      display: flex;
+      gap: 14px;
+      background: #FFFFFF;
+      border: 1px solid var(--coal-border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      position: relative;
+      box-shadow: 0 2px 10px rgba(33, 26, 18, 0.03);
+      transition: var(--transition);
+    }
+    .cart-item:hover {
+      border-color: rgba(33, 26, 18, 0.2);
+      box-shadow: 0 4px 16px rgba(33, 26, 18, 0.06);
+    }
+    .cart-item-img {
+      width: 72px;
+      height: 72px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #EFE9E0;
+      cursor: pointer;
+    }
+    .cart-item-body {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      min-width: 0;
+    }
+    .cart-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 2px;
+    }
+    .cart-item-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--coal);
+      line-height: 1.3;
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .cart-item-title:hover { color: var(--terra); }
+    .cart-item-remove {
+      background: transparent;
+      border: none;
+      color: #94A3B8;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+    .cart-item-remove:hover {
+      background: #FEE2E2;
+      color: #DC2626;
+    }
+    .cart-item-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .cart-item-tag {
+      font-size: 11px;
+      color: var(--terra);
+      font-weight: 700;
+      background: var(--terra-light);
+      padding: 1px 7px;
+      border-radius: var(--radius-full);
+    }
+    .cart-item-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+    .cart-qty-ctrl {
+      display: flex;
+      align-items: center;
+      background: #FAF8F5;
+      border: 1px solid var(--coal-border);
+      border-radius: var(--radius-full);
+      padding: 2px 4px;
+      gap: 6px;
+    }
+    .qty-btn {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: none;
+      background: #FFFFFF;
+      color: var(--coal);
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      transition: var(--transition);
+    }
+    .qty-btn:hover {
+      background: var(--coal);
+      color: #FFFFFF;
+    }
+    .qty-val {
+      font-size: 12.5px;
+      font-weight: 700;
+      min-width: 14px;
+      text-align: center;
+      color: var(--coal);
+    }
+    .cart-item-prices {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .cart-price-online {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--coal);
+    }
+    .cart-price-base {
+      font-size: 11.5px;
+      color: #94A3B8;
+      text-decoration: line-through;
+    }
+
+    /* Cart Trust Banner */
+    .cart-trust-banner {
+      background: #FFFFFF;
+      border: 1px dashed var(--coal-border);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--coal-muted);
+      margin-top: 4px;
+    }
+    .cart-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Drawer Footer & Checkout Breakdown */
+    .drawer-footer {
+      padding: 20px 24px;
+      border-top: 1px solid var(--coal-border);
+      background: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 -6px 24px rgba(33, 26, 18, 0.05);
+    }
+    .cart-summary-box {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .cart-summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--coal-muted);
+    }
+    .cart-summary-row.discount {
+      color: var(--green-accent);
+      font-weight: 700;
+    }
+    .cart-summary-row.total {
+      border-top: 1px dashed var(--coal-border);
+      padding-top: 10px;
+      margin-top: 4px;
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--coal);
+    }
+    .cart-summary-total-price {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--green-accent);
+    }
+    .cart-footer-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
 
     .toast-msg { position: fixed; bottom: 24px; right: 24px; background: var(--coal); color: #FFFFFF; padding: 12px 20px; border-radius: var(--radius-full); font-weight: 600; font-size: 13px; z-index: 3000; transform: translateY(100px); opacity: 0; transition: var(--transition); }
     .toast-msg.show { transform: translateY(0); opacity: 1; }
@@ -1815,28 +2094,44 @@
   <div class="cart-drawer-overlay" id="cartDrawerOverlay" onclick="closeCartDrawerOnOverlay(event)">
     <div class="cart-drawer">
       <div class="drawer-header">
-        <h3 style="font-size: 18px; font-weight: 700; color: var(--coal); display: flex; align-items: center; gap: 8px;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Корзина (<span id="drawerCount">0</span>)
-        </h3>
-        <button style="background: transparent; border: none; font-size: 18px; cursor: pointer;" onclick="closeCartDrawer()">✕</button>
+        <div class="drawer-title-group">
+          <h3 class="drawer-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span>Корзина</span>
+          </h3>
+          <span class="drawer-badge" id="drawerCountBadge">0 услуг</span>
+        </div>
+        <button class="drawer-close-btn" onclick="closeCartDrawer()" title="Закрыть">✕</button>
       </div>
 
       <div class="drawer-items" id="drawerItems"></div>
 
-      <div class="drawer-footer">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span style="font-size: 13px; color: var(--coal-muted);">Итого со скидкой -20%:</span>
-          <span style="font-size: 20px; font-weight: 800; color: var(--coal);" id="drawerTotalPrice">0 ฿</span>
+      <div class="drawer-footer" id="drawerFooterBox">
+        <div class="cart-summary-box">
+          <div class="cart-summary-row">
+            <span>Базовая стоимость:</span>
+            <span id="drawerBasePrice">0 ฿</span>
+          </div>
+          <div class="cart-summary-row discount">
+            <span>Онлайн-скидка (-20%):</span>
+            <span id="drawerDiscountPrice">−0 ฿</span>
+          </div>
+          <div class="cart-summary-row total">
+            <span>Итого к оплате онлайн:</span>
+            <span class="cart-summary-total-price" id="drawerTotalPrice">0 ฿</span>
+          </div>
         </div>
 
-        <button class="btn-stripe-pay" style="width: 100%; border-radius: var(--radius-full);" onclick="proceedCartStripeCheckout()">
-          🔥 Оплатить всю корзину со скидкой -20%
-        </button>
+        <div class="cart-footer-actions">
+          <button class="btn-stripe-pay" style="width: 100%; border-radius: var(--radius-full);" onclick="proceedCartStripeCheckout()">
+            <span>🔥 Оплатить онлайн со скидкой (<span id="drawerBtnStripePrice">0 ฿</span>)</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
 
-        <button class="btn-free-booking" style="width: 100%; border-radius: var(--radius-full);" onclick="proceedCartFreeBooking()">
-          🔘 Забронировать всю корзину без предоплаты
-        </button>
+          <button class="btn-free-booking" style="width: 100%; border-radius: var(--radius-full);" onclick="proceedCartFreeBooking()">
+            <span>🔘 Забронировать без предоплаты (оплата в салоне)</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -2887,48 +3182,115 @@
       showToast(`«${service.title}» (${variant.duration}) добавлен в корзину`);
     }
 
+    function changeCartItemQty(index, delta) {
+      if (!cart[index]) return;
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      updateCartUI();
+    }
+
+    function removeCartItem(index) {
+      if (!cart[index]) return;
+      const title = cart[index].title;
+      cart.splice(index, 1);
+      updateCartUI();
+      showToast(`«${title}» удален из корзины`);
+    }
+
+    function getServicesCountText(n) {
+      if (n % 10 === 1 && n % 100 !== 11) return n + ' услуга';
+      if ([2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100)) return n + ' услуги';
+      return n + ' услуг';
+    }
+
     function updateCartUI() {
       const countEl = document.getElementById('cartCount');
-      const drawerCountEl = document.getElementById('drawerCount');
+      const drawerCountBadge = document.getElementById('drawerCountBadge');
       const drawerItemsEl = document.getElementById('drawerItems');
-      const totalPriceEl = document.getElementById('drawerTotalPrice');
+      const drawerFooterBox = document.getElementById('drawerFooterBox');
 
       const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
       const totalRaw = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
-      const totalDiscounted = Math.round(totalRaw * 0.8);
+      const totalDiscount = Math.round(totalRaw * 0.2);
+      const totalDiscounted = totalRaw - totalDiscount;
 
       countEl.textContent = totalItems;
-      drawerCountEl.textContent = totalItems;
-      totalPriceEl.textContent = `${totalDiscounted.toLocaleString('ru-RU')} ฿ (${totalRaw.toLocaleString('ru-RU')} ฿ без скидки)`;
+      if (drawerCountBadge) drawerCountBadge.textContent = getServicesCountText(totalItems);
+
+      const basePriceEl = document.getElementById('drawerBasePrice');
+      const discountPriceEl = document.getElementById('drawerDiscountPrice');
+      const totalPriceEl = document.getElementById('drawerTotalPrice');
+      const btnStripePriceEl = document.getElementById('drawerBtnStripePrice');
+
+      if (basePriceEl) basePriceEl.textContent = `${totalRaw.toLocaleString('ru-RU')} ฿`;
+      if (discountPriceEl) discountPriceEl.textContent = `−${totalDiscount.toLocaleString('ru-RU')} ฿`;
+      if (totalPriceEl) totalPriceEl.textContent = `${totalDiscounted.toLocaleString('ru-RU')} ฿`;
+      if (btnStripePriceEl) btnStripePriceEl.textContent = `${totalDiscounted.toLocaleString('ru-RU')} ฿`;
 
       if (cart.length === 0) {
+        if (drawerFooterBox) drawerFooterBox.style.display = 'none';
         drawerItemsEl.innerHTML = `
-          <div style="text-align: center; padding: 50px 20px; color: var(--coal-muted);">
-            <svg style="width: 44px; height: 44px; margin-bottom: 8px; opacity: 0.3;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            <p>Ваша корзина пуста.<br>Выберите массаж или спа-ритуал.</p>
+          <div style="text-align: center; padding: 60px 20px; color: var(--coal-muted); display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+            <div style="width: 72px; height: 72px; border-radius: 50%; background: #FAF8F5; border: 1px solid var(--coal-border); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+              <svg style="width: 36px; height: 36px; opacity: 0.35; color: var(--coal);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+            <h4 style="font-size: 16px; font-weight: 700; color: var(--coal); margin-bottom: 6px;">Корзина пока пуста</h4>
+            <p style="font-size: 13px; max-width: 240px; line-height: 1.5; color: var(--coal-muted); margin-bottom: 20px;">Выберите желаемый тайский массаж или спа-ритуал из каталога.</p>
+            <button class="book-action-btn" style="padding: 10px 22px; font-size: 13px;" onclick="closeCartDrawer()">Перейти к выбору</button>
           </div>
         `;
         return;
       }
 
-      drawerItemsEl.innerHTML = cart.map((item, index) => `
-        <div class="cart-item">
-          <img src="${item.image}" alt="${item.title}" class="cart-item-img">
-          <button class="cart-item-remove" onclick="removeCartItem(${index})" title="Удалить">✕</button>
-          <div class="cart-item-info">
-            <div class="cart-item-title">${item.title}</div>
-            <div class="cart-item-duration">⏱ ${item.duration}</div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
-              <span class="cart-item-price">${(item.price * item.qty).toLocaleString('ru-RU')} ฿</span>
+      if (drawerFooterBox) drawerFooterBox.style.display = 'flex';
+
+      const itemsHtml = cart.map((item, index) => {
+        const itemBaseTotal = item.price * item.qty;
+        const itemDiscTotal = Math.round(itemBaseTotal * 0.8);
+        return `
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.title}" class="cart-item-img" onclick="closeCartDrawer(); openServiceDetailPage('${item.serviceId}')" title="Открыть страницу услуги">
+            <div class="cart-item-body">
+              <div class="cart-item-header">
+                <div class="cart-item-title" onclick="closeCartDrawer(); openServiceDetailPage('${item.serviceId}')" title="${item.title}">${item.title}</div>
+                <button class="cart-item-remove" onclick="removeCartItem(${index})" title="Удалить услугу">✕</button>
+              </div>
+              <div class="cart-item-meta">
+                <span class="cart-item-tag">⏱ ${item.duration}</span>
+                <span style="font-size: 11px; color: var(--coal-muted);">${item.category || 'SPA'}</span>
+              </div>
+              <div class="cart-item-bottom">
+                <div class="cart-qty-ctrl">
+                  <button class="qty-btn" onclick="changeCartItemQty(${index}, -1)" title="Уменьшить">−</button>
+                  <span class="qty-val">${item.qty}</span>
+                  <button class="qty-btn" onclick="changeCartItemQty(${index}, 1)" title="Увеличить">+</button>
+                </div>
+                <div class="cart-item-prices">
+                  <span class="cart-price-online">${itemDiscTotal.toLocaleString('ru-RU')} ฿</span>
+                  <span class="cart-price-base">${itemBaseTotal.toLocaleString('ru-RU')} ฿</span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      `).join('');
-    }
+        `;
+      }).join('');
 
-    function removeCartItem(index) {
-      cart.splice(index, 1);
-      updateCartUI();
+      const trustHtml = `
+        <div class="cart-trust-banner">
+          <div class="cart-trust-item">
+            <span>📍</span>
+            <span><strong>Локация:</strong> Салон IAMNUA Раваи (Fisherman Way)</span>
+          </div>
+          <div class="cart-trust-item">
+            <span>🎁</span>
+            <span><strong>Выгода:</strong> Скидка -20% применена при оплате онлайн</span>
+          </div>
+        </div>
+      `;
+
+      drawerItemsEl.innerHTML = itemsHtml + trustHtml;
     }
 
     function openCartDrawer() { document.getElementById('cartDrawerOverlay').classList.add('is-open'); }
