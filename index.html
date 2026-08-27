@@ -1,0 +1,2982 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NUA Thai Massage — Каталог услуг и онлайн-запись</title>
+  
+  <!-- Google Fonts: Caveat & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       AUTHENTIC IAMNUA DESIGN SYSTEM (Light Warm Sand / Organic Zen Spa)
+       ========================================================================== */
+    :root {
+      /* Backgrounds & Neutrals */
+      --bg-main: #FAF8F5;          /* Фирменный светлый фон сайта */
+      --bg-card: #FFFFFF;          /* Чистый белый для карточек */
+      --bg-sand: #F3ECE2;          /* Песочная подложка */
+      --bg-cream: #ECDCCF;         /* Нежный крем */
+      --bg-latte: #E1CCB9;         /* Теплый латте */
+      
+      /* Brand Accent Colors */
+      --coal: #211A12;             /* Основной темно-кофейный / черный текст */
+      --coal-muted: #6B6257;       /* Второстепенный мягкий текст */
+      --coal-border: rgba(33, 26, 18, 0.1); /* Тонкие разделители */
+      --terra: #B0501E;            /* Фирменная терракота */
+      --terra-hover: #8F3E14;      /* Темная терракота */
+      --terra-light: #FDF4EE;      /* Светло-терракотовый фон */
+      --gold-accent: #C58E4E;      /* Золотистый акцент */
+      --green-accent: #15803D;     /* Зеленый акцент для скидки и Stripe */
+      --green-bg: #F0FDF4;         /* Фон скидки */
+      --green-border: #86EFAC;     /* Граница скидки */
+      --white: #FFFFFF;
+      
+      /* Typography */
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-accent: 'Caveat', cursive, sans-serif;
+      
+      /* Radius & Shadows */
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --radius-full: 9999px;
+      
+      --shadow-subtle: 0 4px 20px rgba(33, 26, 18, 0.04);
+      --shadow-card: 0 8px 26px rgba(33, 26, 18, 0.07);
+      --shadow-hover: 0 16px 36px rgba(33, 26, 18, 0.12);
+      --shadow-modal: 0 24px 60px rgba(33, 26, 18, 0.22);
+      
+      --transition: all 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--coal);
+      font-family: var(--font-main);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       AUTHENTIC HEADER (Brand Logo + Cart + Hamburger)
+       ========================================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 248, 245, 0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--coal-border);
+      padding: 12px 0;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand-logo-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .brand-logo-img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      transition: transform 0.25s ease;
+    }
+    .brand-logo-img:hover {
+      transform: scale(1.03);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* View Mode Switcher in Header */
+    .view-mode-toggle {
+      display: flex;
+      background: #EFE9E0;
+      border: 1px solid var(--coal-border);
+      border-radius: var(--radius-full);
+      padding: 3px;
+    }
+
+    .mode-btn {
+      background: transparent;
+      border: none;
+      color: var(--coal);
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.7;
+    }
+    .mode-btn.active {
+      background: var(--coal) !important;
+      color: #FFFFFF !important;
+      opacity: 1;
+      box-shadow: 0 2px 8px rgba(33, 26, 18, 0.18);
+    }
+
+    /* Cart Button */
+    .cart-btn {
+      position: relative;
+      background: #FFFFFF;
+      border: 1px solid var(--coal-border);
+      color: var(--coal);
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--shadow-subtle);
+    }
+    .cart-btn:hover {
+      background: var(--coal);
+      color: #FFFFFF;
+      border-color: var(--coal);
+      transform: scale(1.04);
+    }
+    .cart-badge {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      background: var(--terra);
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 700;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--bg-main);
+      transition: var(--transition);
+    }
+
+    /* Hamburger Menu Button */
+    .hamburger-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+    .hamburger-btn:hover {
+      background: rgba(176, 80, 30, 0.08);
+    }
+    .hamburger-line {
+      width: 100%;
+      height: 2px;
+      background: var(--terra);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* ==========================================================================
+       FULLSCREEN / SLIDE-OUT NAVIGATION MENU
+       ========================================================================== */
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(33, 26, 18, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 1500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .menu-overlay.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .menu-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 460px;
+      background: #FAF8F5;
+      border-left: 1px solid var(--coal-border);
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1501;
+    }
+    .menu-overlay.is-open .menu-drawer {
+      transform: translateX(0);
+    }
+    .menu-drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 36px;
+    }
+    .menu-close-btn {
+      background: transparent;
+      border: 1px solid var(--coal-border);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      font-size: 18px;
+      color: var(--coal);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    .menu-close-btn:hover { background: var(--coal); color: #FFFFFF; }
+    
+    .menu-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .menu-nav-item {
+      font-family: var(--font-accent);
+      font-size: 36px;
+      color: var(--coal);
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .menu-nav-item:hover { color: var(--terra); transform: translateX(8px); }
+
+    /* ==========================================================================
+       HERO & INTRO BANNER (CATALOG VIEW)
+       ========================================================================== */
+    .catalog-view-container {
+      display: block;
+    }
+    .shop-hero {
+      padding: 40px 0 24px;
+      text-align: center;
+    }
+    .branch-static-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-sand);
+      color: var(--coal);
+      border: 1px solid var(--coal-border);
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      font-size: 12.5px;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .shop-hero-title {
+      font-family: var(--font-accent);
+      font-size: clamp(42px, 5.5vw, 64px);
+      font-weight: 700;
+      color: var(--coal);
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+    .shop-hero-desc {
+      color: var(--coal-muted);
+      font-size: 15.5px;
+      max-width: 600px;
+      margin: 0 auto 24px;
+    }
+
+    .promo-banner {
+      background: var(--green-bg);
+      border: 1px solid var(--green-border);
+      border-radius: var(--radius-md);
+      padding: 12px 20px;
+      max-width: 680px;
+      margin: 0 auto 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--green-accent);
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+    .promo-badge {
+      background: var(--green-accent);
+      color: #FFFFFF;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Category Filter Tabs */
+    .filter-bar-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--coal-border);
+      padding-bottom: 16px;
+    }
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px;
+      scrollbar-width: none;
+    }
+    .filter-tabs::-webkit-scrollbar { display: none; }
+    
+    .filter-tab {
+      background: transparent;
+      border: none;
+      color: var(--coal);
+      opacity: 0.7;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .filter-tab:hover { opacity: 1; background: rgba(33, 26, 18, 0.05); }
+    .filter-tab.active {
+      opacity: 1 !important;
+      color: #FFFFFF !important;
+      background: var(--coal) !important;
+      font-weight: 600;
+      box-shadow: 0 4px 14px rgba(33, 26, 18, 0.2);
+    }
+
+    /* ==========================================================================
+       VIEW 1: E-COMMERCE PRODUCTS GRID
+       ========================================================================== */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 30px;
+      margin-bottom: 80px;
+    }
+
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--coal-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+      box-shadow: var(--shadow-subtle);
+      position: relative;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(33, 26, 18, 0.2);
+    }
+
+    .product-img-box {
+      position: relative;
+      width: 100%;
+      height: 240px;
+      background: #EFE9E0;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .product-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .product-card:hover .product-img { transform: scale(1.05); }
+
+    .product-tag-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(33, 26, 18, 0.1);
+      color: var(--coal);
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      z-index: 2;
+    }
+
+    .discount-corner-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: var(--green-bg);
+      border: 1px solid var(--green-border);
+      color: var(--green-accent);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      z-index: 2;
+    }
+
+    .quick-add-btn {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      color: var(--coal);
+      border: 1px solid var(--coal-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      transition: var(--transition);
+      z-index: 2;
+    }
+    .quick-add-btn:hover {
+      background: var(--terra);
+      border-color: var(--terra);
+      color: #FFFFFF;
+      transform: scale(1.1);
+    }
+
+    .product-body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--coal);
+      margin-bottom: 6px;
+      line-height: 1.35;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .product-title:hover { color: var(--terra); }
+
+    .product-desc {
+      color: var(--coal-muted);
+      font-size: 13px;
+      line-height: 1.55;
+      margin-bottom: 16px;
+      flex-grow: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .duration-chips-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 18px;
+      background: #FAF8F5;
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--coal-border);
+    }
+    .chips-label {
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--coal-muted);
+      font-weight: 600;
+    }
+    .duration-chips {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .duration-chip {
+      background: #FFFFFF;
+      border: 1px solid rgba(33, 26, 18, 0.15);
+      color: var(--coal);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .duration-chip:hover { border-color: var(--terra); color: var(--terra); }
+    .duration-chip.active {
+      background: var(--coal) !important;
+      color: #FFFFFF !important;
+      border-color: var(--coal) !important;
+      font-weight: 600;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-top: 14px;
+      border-top: 1px solid var(--coal-border);
+    }
+    .price-box { display: flex; flex-direction: column; }
+    .price-label { font-size: 10.5px; color: var(--coal-muted); text-transform: uppercase; }
+    .price-row-display { display: flex; align-items: baseline; gap: 6px; }
+    .price-value { font-size: 19px; font-weight: 700; color: var(--coal); }
+    .price-discount-hint { font-size: 11px; color: var(--green-accent); font-weight: 600; }
+
+    .book-actions-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .book-action-btn {
+      background: var(--terra);
+      color: #FFFFFF;
+      border: none;
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .book-action-btn:hover { background: var(--terra-hover); transform: scale(1.03); }
+
+    .view-detail-btn {
+      background: #FAF8F5;
+      border: 1px solid var(--coal-border);
+      color: var(--coal);
+      padding: 8px 12px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .view-detail-btn:hover { background: var(--coal); color: #FFFFFF; }
+
+    /* ==========================================================================
+       VIEW 2: 3-COLUMN SPA MENU LAYOUT
+       ========================================================================== */
+    .menu-columns-layout {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-bottom: 80px;
+    }
+
+    .menu-column {
+      background: var(--bg-card);
+      border: 1px solid var(--coal-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-card);
+    }
+
+    .menu-col-header { position: relative; height: 200px; background: #EFE9E0; }
+    .menu-col-img { width: 100%; height: 100%; object-fit: cover; }
+    .menu-col-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(33, 26, 18, 0.1);
+      color: var(--coal);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+    }
+
+    .menu-col-list {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .menu-item {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(33, 26, 18, 0.08);
+    }
+    .menu-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .menu-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .menu-item-title {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--coal);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .menu-item-title:hover { color: var(--terra); }
+
+    .menu-item-price-badge {
+      background: var(--coal);
+      color: #FFFFFF !important;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .menu-item-durations { display: flex; gap: 6px; margin-bottom: 6px; }
+    .menu-dur-btn {
+      background: #FAF8F5;
+      border: 1px solid rgba(33, 26, 18, 0.12);
+      color: var(--coal-muted);
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .menu-dur-btn.active {
+      background: var(--coal) !important;
+      color: #FFFFFF !important;
+      border-color: var(--coal) !important;
+      font-weight: 600;
+    }
+
+    .menu-item-desc { color: var(--coal-muted); font-size: 12.5px; line-height: 1.5; margin-bottom: 8px; }
+    .menu-item-action { display: flex; align-items: center; justify-content: flex-end; gap: 6px; }
+
+    /* ==========================================================================
+       DEDICATED INTERNAL SERVICE PAGE (ВНУТРЕННЯЯ СТРАНИЦА УСЛУГИ)
+       ========================================================================== */
+    .service-detail-view {
+      display: none;
+      padding-top: 24px;
+      margin-bottom: 80px;
+      animation: fadeIn 0.3s ease;
+    }
+    .service-detail-view.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .detail-breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--coal-muted);
+      margin-bottom: 24px;
+    }
+    .detail-breadcrumbs a {
+      color: var(--coal);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: var(--transition);
+    }
+    .detail-breadcrumbs a:hover { color: var(--terra); }
+
+    /* Hero Section of Service Page */
+    .service-hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 44px;
+      background: var(--bg-card);
+      border: 1px solid var(--coal-border);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 48px;
+    }
+
+    .service-gallery-box {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .service-hero-img-box {
+      width: 100%;
+      height: 440px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: #EFE9E0;
+      position: relative;
+    }
+    .service-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .service-hero-thumbs {
+      display: flex;
+      gap: 10px;
+    }
+    .service-hero-thumb {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      opacity: 0.6;
+      transition: var(--transition);
+    }
+    .service-hero-thumb.active, .service-hero-thumb:hover {
+      border-color: var(--terra);
+      opacity: 1;
+    }
+    .service-hero-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Service Hero Info & Booking Panel */
+    .service-info-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .service-tag {
+      color: var(--terra);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 6px;
+    }
+    .service-h1 {
+      font-size: clamp(24px, 2.8vw, 32px);
+      font-weight: 800;
+      color: var(--coal);
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .service-lead-text {
+      color: var(--coal-muted);
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    /* Duration selector in Page */
+    .page-duration-box {
+      background: #FAF8F5;
+      border: 1px solid var(--coal-border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    .page-dur-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--coal-muted);
+      margin-bottom: 10px;
+    }
+    .page-dur-chips {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .page-dur-chip {
+      background: #FFFFFF;
+      border: 1px solid rgba(33, 26, 18, 0.15);
+      color: var(--coal);
+      padding: 8px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .page-dur-chip:hover { border-color: var(--terra); color: var(--terra); }
+    .page-dur-chip.active {
+      background: var(--coal) !important;
+      color: #FFFFFF !important;
+      border-color: var(--coal) !important;
+    }
+
+    /* Price Bar */
+    .page-price-breakdown {
+      background: var(--green-bg);
+      border: 1px solid var(--green-border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+    .page-price-left { display: flex; flex-direction: column; }
+    .page-price-orig { font-size: 13px; color: #64748B; }
+    .page-price-discounted { font-size: 26px; font-weight: 800; color: var(--green-accent); }
+
+    .page-actions-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* CTA Hierarchy: Primary > Secondary > Tertiary */
+    .page-actions-stack .btn-stripe-pay {
+      font-size: 14.5px;
+      padding: 16px 20px;
+      box-shadow: 0 6px 20px rgba(22, 101, 52, 0.35);
+      border-radius: var(--radius-full);
+    }
+    .page-actions-stack .btn-free-booking {
+      font-size: 13px;
+      padding: 13px 20px;
+      border: 1.5px solid var(--coal-border);
+    }
+    .page-actions-stack .btn-tertiary-cart {
+      background: transparent;
+      border: 1px dashed rgba(33, 26, 18, 0.2);
+      color: var(--coal-muted);
+      padding: 10px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .page-actions-stack .btn-tertiary-cart:hover {
+      border-color: var(--coal);
+      color: var(--coal);
+      border-style: solid;
+    }
+
+    /* Drop-cap for philosophy text */
+    .philosophy-text {
+      font-size: 14.5px;
+      line-height: 1.75;
+      color: var(--coal-muted);
+    }
+    .philosophy-text::first-letter {
+      float: left;
+      font-size: 3.2em;
+      line-height: 0.85;
+      padding-right: 8px;
+      padding-top: 4px;
+      color: var(--terra);
+      font-weight: 800;
+    }
+    .content-card.philosophy-card {
+      border-left: 4px solid var(--terra);
+    }
+
+    /* Ingredients card */
+    .ingredients-text {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--coal-muted);
+      padding: 14px;
+      background: #FAF8F5;
+      border: 1px solid var(--coal-border);
+      border-radius: var(--radius-sm);
+      margin-top: 10px;
+    }
+
+    /* Guest & Date on Detail Page */
+    .page-guest-date-box {
+      background: #FAF8F5;
+      border: 1px solid var(--coal-border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .page-guests-chips {
+      display: flex;
+      gap: 8px;
+    }
+    .page-guest-chip {
+      flex: 1;
+      background: #FFFFFF;
+      border: 1px solid var(--coal-border);
+      color: var(--coal);
+      padding: 7px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .page-guest-chip.active {
+      background: var(--coal) !important;
+      color: #FFFFFF !important;
+    }
+    .page-datetime-row {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 8px;
+    }
+
+    /* Content Sections: The Ritual, Steps, Benefits, Ingredients */
+    .service-deep-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    .content-card {
+      background: var(--bg-card);
+      border: 1px solid var(--coal-border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-subtle);
+      margin-bottom: 28px;
+    }
+    .section-h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--coal);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Steps list */
+    .ritual-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 16px;
+    }
+    .ritual-step-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--bg-sand);
+      color: var(--terra);
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 14px;
+    }
+    .step-text strong { display: block; font-size: 14.5px; color: var(--coal); margin-bottom: 2px; }
+    .step-text p { font-size: 13.5px; color: var(--coal-muted); }
+
+    /* Benefits grid */
+    .benefits-chips-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .benefit-item {
+      background: #FAF8F5;
+      border: 1px solid var(--coal-border);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--coal);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Sidebar info */
+    .sidebar-sticky-wrapper {
+      position: sticky;
+      top: 90px;
+      align-self: start;
+    }
+    .sidebar-sticky-card {
+      background: var(--bg-sand);
+      border: 1px solid var(--coal-border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .side-info-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .side-icon { font-size: 20px; flex-shrink: 0; }
+    .side-text strong { font-size: 13.5px; color: var(--coal); display: block; }
+    .side-text p { font-size: 12.5px; color: var(--coal-muted); }
+
+    /* Related Services */
+    .related-section {
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid var(--coal-border);
+    }
+    .related-title {
+      font-family: var(--font-accent);
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--coal);
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    /* ==========================================================================
+       MODALS: BOOKING & STRIPE CHECKOUT
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(33, 26, 18, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.is-open { opacity: 1; pointer-events: auto; }
+
+    .modal-card {
+      background: #FFFFFF;
+      border: 1px solid var(--coal-border);
+      border-radius: var(--radius-lg);
+      max-width: 980px;
+      width: 100%;
+      max-height: 92vh;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 36px;
+      padding: 36px;
+      position: relative;
+      box-shadow: var(--shadow-modal);
+      transform: translateY(20px) scale(0.98);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .modal-overlay.is-open .modal-card { transform: translateY(0) scale(1); }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 36px;
+      height: 36px;
+      background: #FAF8F5;
+      border: 1px solid var(--coal-border);
+      color: var(--coal);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 10;
+    }
+    .modal-close-btn:hover { background: var(--coal); color: #FFFFFF; transform: rotate(90deg); }
+
+    /* Modal Form Elements */
+    .modal-left-col { display: flex; flex-direction: column; gap: 14px; }
+    .modal-main-img-box { width: 100%; height: 230px; border-radius: var(--radius-md); overflow: hidden; background: #EFE9E0; }
+    .modal-main-img { width: 100%; height: 100%; object-fit: cover; }
+    .modal-thumbs { display: flex; gap: 8px; }
+    .modal-thumb { width: 54px; height: 54px; border-radius: var(--radius-sm); overflow: hidden; cursor: pointer; border: 2px solid transparent; opacity: 0.6; }
+    .modal-thumb.active { border-color: var(--terra); opacity: 1; }
+    .modal-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+    .modal-form-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      border-left: 1px solid var(--coal-border);
+      padding-left: 32px;
+    }
+    .form-step-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--coal); display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .step-tag { background: var(--bg-sand); color: var(--coal); font-size: 10.5px; padding: 2px 8px; border-radius: var(--radius-full); font-weight: 700; }
+    .static-location-banner { background: #FAF8F5; border: 1px solid var(--coal-border); border-radius: var(--radius-sm); padding: 9px 12px; display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 12.5px; }
+
+    .guests-chips { display: flex; gap: 8px; margin-bottom: 10px; }
+    .guest-chip { flex: 1; background: #FAF8F5; border: 1px solid var(--coal-border); color: var(--coal); padding: 7px; border-radius: var(--radius-sm); font-size: 12px; font-weight: 600; text-align: center; cursor: pointer; transition: var(--transition); }
+    .guest-chip.active { background: var(--coal) !important; color: #FFFFFF !important; }
+
+    .datetime-row { display: grid; grid-template-columns: 1.2fr 1fr; gap: 10px; margin-bottom: 6px; }
+    .form-input, .form-select { width: 100%; background: #FAF8F5; border: 1px solid var(--coal-border); border-radius: var(--radius-sm); padding: 9px 12px; font-family: var(--font-main); font-size: 13px; color: var(--coal); outline: none; transition: var(--transition); }
+    .form-input:focus, .form-select:focus { border-color: var(--terra); background: #FFFFFF; }
+
+    .price-calc-box { background: var(--green-bg); border: 1px solid var(--green-border); border-radius: var(--radius-md); padding: 12px; display: flex; flex-direction: column; gap: 4px; }
+    .calc-row { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--coal-muted); }
+    .calc-row.discount { color: var(--green-accent); font-weight: 700; }
+    .calc-row.total { border-top: 1px dashed rgba(22, 101, 52, 0.3); padding-top: 4px; margin-top: 2px; font-size: 14px; font-weight: 800; color: var(--coal); }
+    .calc-total-val { font-size: 18px; color: var(--green-accent); }
+
+    .contact-inputs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .form-actions-stack { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+
+    .btn-stripe-pay {
+      background: #166534;
+      color: #FFFFFF !important;
+      border: none;
+      padding: 13px 20px;
+      border-radius: var(--radius-full);
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(22, 101, 52, 0.3);
+    }
+    .btn-stripe-pay:hover { background: #14532D; transform: translateY(-2px); }
+
+    .btn-free-booking {
+      background: #FFFFFF;
+      border: 1px solid var(--coal-border);
+      color: var(--coal);
+      padding: 10px 20px;
+      border-radius: var(--radius-full);
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .btn-free-booking:hover { background: #FAF8F5; border-color: var(--coal); }
+
+    /* Stripe Modal */
+    .stripe-modal-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      max-width: 860px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      box-shadow: var(--shadow-modal);
+      position: relative;
+    }
+    .stripe-summary-col { background: #F8FAFC; border-right: 1px solid #E2E8F0; padding: 36px; display: flex; flex-direction: column; justify-content: space-between; }
+    .stripe-price-total { font-size: 32px; font-weight: 800; color: #0F172A; margin-bottom: 8px; }
+    .stripe-form-col { padding: 36px; display: flex; flex-direction: column; gap: 18px; }
+    .stripe-express-pay { background: #000000; color: #FFFFFF; border: none; border-radius: 8px; padding: 12px; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
+    .stripe-divider { display: flex; align-items: center; gap: 12px; color: #94A3B8; font-size: 12px; text-transform: uppercase; }
+    .stripe-divider::before, .stripe-divider::after { content: ''; flex: 1; height: 1px; background: #E2E8F0; }
+    .stripe-input { background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 6px; padding: 10px 12px; font-size: 13.5px; outline: none; width: 100%; }
+    .stripe-submit-btn { background: #6366F1; color: #FFFFFF; border: none; border-radius: 8px; padding: 14px; font-size: 15px; font-weight: 700; cursor: pointer; }
+
+    /* Success Card */
+    .success-card { background: #FFFFFF; border-radius: var(--radius-lg); max-width: 560px; width: 100%; padding: 40px 32px; text-align: center; position: relative; }
+    .success-icon-box { width: 64px; height: 64px; border-radius: 50%; background: var(--green-bg); border: 2px solid var(--green-border); color: var(--green-accent); display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 16px; }
+    .success-order-box { background: #FAF8F5; border: 1px solid var(--coal-border); border-radius: var(--radius-md); padding: 16px; text-align: left; margin: 20px 0; font-size: 13px; display: flex; flex-direction: column; gap: 6px; }
+
+    /* Cart Slide Drawer */
+    .cart-drawer-overlay { position: fixed; inset: 0; background: rgba(33, 26, 18, 0.5); backdrop-filter: blur(8px); z-index: 2100; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .cart-drawer-overlay.is-open { opacity: 1; pointer-events: auto; }
+    .cart-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: 100%; max-width: 440px; background: #FFFFFF; border-left: 1px solid var(--coal-border); z-index: 2101; display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+    .cart-drawer-overlay.is-open .cart-drawer { transform: translateX(0); }
+    .drawer-header { padding: 20px 24px; border-bottom: 1px solid var(--coal-border); display: flex; justify-content: space-between; align-items: center; background: var(--bg-main); }
+    .drawer-items { flex-grow: 1; overflow-y: auto; padding: 20px 24px; display: flex; flex-direction: column; gap: 14px; }
+    .cart-item { display: flex; gap: 12px; background: #FAF8F5; border: 1px solid var(--coal-border); border-radius: var(--radius-md); padding: 12px; position: relative; }
+    .cart-item-img { width: 64px; height: 64px; border-radius: var(--radius-sm); object-fit: cover; }
+    .cart-item-info { flex-grow: 1; display: flex; flex-direction: column; }
+    .cart-item-title { font-size: 13.5px; font-weight: 700; padding-right: 20px; }
+    .cart-item-duration { font-size: 11.5px; color: var(--terra); font-weight: 600; }
+    .cart-item-price { font-size: 14.5px; font-weight: 700; }
+    .cart-item-remove { position: absolute; top: 8px; right: 8px; background: transparent; border: none; color: var(--coal-muted); cursor: pointer; }
+    .drawer-footer { padding: 20px 24px; border-top: 1px solid var(--coal-border); background: #FAF8F5; display: flex; flex-direction: column; gap: 10px; }
+
+    .toast-msg { position: fixed; bottom: 24px; right: 24px; background: var(--coal); color: #FFFFFF; padding: 12px 20px; border-radius: var(--radius-full); font-weight: 600; font-size: 13px; z-index: 3000; transform: translateY(100px); opacity: 0; transition: var(--transition); }
+    .toast-msg.show { transform: translateY(0); opacity: 1; }
+
+    @media (max-width: 991px) {
+      .service-hero-grid, .service-deep-content { grid-template-columns: 1fr; gap: 28px; }
+      .service-hero-img-box { height: 320px; }
+      .menu-columns-layout { grid-template-columns: 1fr; }
+      .modal-card, .stripe-modal-card { grid-template-columns: 1fr; padding: 24px; }
+      .modal-form-col { border-left: none; padding-left: 0; border-top: 1px solid var(--coal-border); padding-top: 20px; }
+      .benefits-chips-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       AUTHENTIC HEADER (Logo + Cart + Hamburger)
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <!-- Official NUA Gold Logo -->
+        <a href="javascript:void(0)" onclick="navigateToCatalog()" class="brand-logo-link">
+          <img src="assets/img/6741aa2488f0662deaa71c80_logo.png" alt="NUA Thai Massage" class="brand-logo-img">
+        </a>
+
+        <!-- Header Actions: Grid/Menu Toggle + Cart + Hamburger -->
+        <div class="header-actions">
+          <!-- View Switcher -->
+          <div class="view-mode-toggle" id="headerViewSwitcher">
+            <button class="mode-btn active" id="btnModeGrid" onclick="setViewMode('grid')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              Сетка
+            </button>
+            <button class="mode-btn" id="btnModeCols" onclick="setViewMode('columns')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+              Меню
+            </button>
+          </div>
+
+          <!-- Cart Button -->
+          <button class="cart-btn" onclick="openCartDrawer()" title="Корзина услуг">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="cart-badge" id="cartCount">0</span>
+          </button>
+
+          <!-- Authentic Hamburger Menu Button -->
+          <button class="hamburger-btn" onclick="openNavMenu()" title="Открыть меню">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       SLIDE-OUT FULLSCREEN NAVIGATION MENU
+       ======================================================================== -->
+  <div class="menu-overlay" id="menuOverlay" onclick="closeNavMenuOnOverlay(event)">
+    <div class="menu-drawer">
+      <div>
+        <div class="menu-drawer-header">
+          <img src="assets/img/6741aa2488f0662deaa71c80_logo.png" alt="NUA" style="height: 38px;">
+          <button class="menu-close-btn" onclick="closeNavMenu()">✕</button>
+        </div>
+
+        <nav class="menu-nav-links">
+          <a href="javascript:void(0)" onclick="navigateToCatalog(); closeNavMenu();" class="menu-nav-item">
+            <span>Каталог массажей</span>
+          </a>
+          <a href="javascript:void(0)" onclick="filterCategory('FIRST TIME', null); navigateToCatalog(); closeNavMenu();" class="menu-nav-item">
+            <span>Классика & Знакомство</span>
+          </a>
+          <a href="javascript:void(0)" onclick="filterCategory('HEALING', null); navigateToCatalog(); closeNavMenu();" class="menu-nav-item">
+            <span>Глубокая терапия</span>
+          </a>
+          <a href="javascript:void(0)" onclick="filterCategory('BEAUTY', null); navigateToCatalog(); closeNavMenu();" class="menu-nav-item">
+            <span>Уход за лицом & Скрабы</span>
+          </a>
+          <a href="javascript:void(0)" onclick="navigateToCatalog(); closeNavMenu();" class="menu-nav-item">
+            <span>О салоне NUA Раваи</span>
+          </a>
+        </nav>
+      </div>
+
+      <div style="font-size: 13px; color: var(--coal-muted); border-top: 1px solid var(--coal-border); padding-top: 20px;">
+        <div>📍 Fisherman Way, Rawai, Phuket</div>
+        <div style="margin-top: 4px;">⏰ Ежедневно с 10:00 до 22:00</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       VIEW A: MAIN CATALOG (GRID & MENU MODES)
+       ======================================================================== -->
+  <div class="catalog-view-container" id="catalogViewContainer">
+    <!-- Hero & Promo Banner -->
+    <section class="shop-hero">
+      <div class="container">
+        <div class="branch-static-badge">📍 Локация: Раваи (Fisherman Way, Rawai)</div>
+        <h1 class="shop-hero-title">The Art of Relaxation & Body Care</h1>
+        <p class="shop-hero-desc">Выберите процедуру, изучите детали или оформите мгновенную бронь. Скидка 20% при онлайн-оплате картой через Stripe.</p>
+
+        <!-- Promo Lead Magnet -->
+        <div class="promo-banner">
+          <span class="promo-badge">Спецпредложение</span>
+          <span>Скидка -20% при моментальной онлайн-оплате картой через Stripe</span>
+        </div>
+
+        <!-- Filter Tabs (Clean 16 Services) -->
+        <div class="filter-bar-wrapper">
+          <div class="filter-tabs">
+            <button class="filter-tab active" onclick="filterCategory('ALL', this)">Все процедуры (16)</button>
+            <button class="filter-tab" onclick="filterCategory('FIRST TIME', this)">Классика и Первое знакомство</button>
+            <button class="filter-tab" onclick="filterCategory('HEALING', this)">Глубокая терапия и Исцеление</button>
+            <button class="filter-tab" onclick="filterCategory('BEAUTY', this)">Уход за лицом и Красота</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Catalog Container -->
+    <main class="container">
+      <!-- 1. Grid View -->
+      <div class="products-grid" id="productsGrid"></div>
+
+      <!-- 2. 3-Column Spa Menu Layout -->
+      <div class="menu-columns-layout" id="menuColumnsLayout" style="display: none;">
+        <div class="menu-column">
+          <div class="menu-col-header">
+            <img src="assets/services/Authentic%20Thai%20Massage/Cover_authentic.PNG" alt="Massage Therapy" class="menu-col-img">
+            <div class="menu-col-badge">Massage Therapy</div>
+          </div>
+          <div class="menu-col-list" id="colList1"></div>
+        </div>
+
+        <div class="menu-column">
+          <div class="menu-col-header">
+            <img src="assets/services/Bamboo%20Healing/cover.png" alt="Healing Therapy" class="menu-col-img">
+            <div class="menu-col-badge">Healing & Body</div>
+          </div>
+          <div class="menu-col-list" id="colList2"></div>
+        </div>
+
+        <div class="menu-column">
+          <div class="menu-col-header">
+            <img src="assets/services/Lifting%20Facial/lifting_cover.png" alt="Beauty & Care" class="menu-col-img">
+            <div class="menu-col-badge">Beauty & Care</div>
+          </div>
+          <div class="menu-col-list" id="colList3"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ========================================================================
+       VIEW B: DEDICATED INDIVIDUAL SERVICE PAGE (ВНУТРЕННЯЯ СТРАНИЦА УСЛУГИ)
+       ======================================================================== -->
+  <div class="service-detail-view" id="serviceDetailView">
+    <div class="container">
+      
+      <!-- Breadcrumbs -->
+      <div class="detail-breadcrumbs">
+        <a href="javascript:void(0)" onclick="navigateToCatalog()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Каталог услуг
+        </a>
+        <span>/</span>
+        <span id="pageBreadcrumbCategory">Классика</span>
+        <span>/</span>
+        <span style="color: var(--coal); font-weight: 700;" id="pageBreadcrumbTitle">Authentic Thai Massage</span>
+      </div>
+
+      <!-- Top Hero Section: Gallery & Fast Booking Form -->
+      <section class="service-hero-grid">
+        <!-- Gallery with Zoom & Thumbnails -->
+        <div class="service-gallery-box">
+          <div class="service-hero-img-box">
+            <img src="" alt="" class="service-hero-img" id="pageHeroImg">
+          </div>
+          <div class="service-hero-thumbs" id="pageHeroThumbs"></div>
+        </div>
+
+        <!-- Info & Booking Widget -->
+        <div class="service-info-panel">
+          <div>
+            <div class="service-tag" id="pageCategoryTag">MASSAGE THERAPY</div>
+            <h1 class="service-h1" id="pageTitle">Authentic Thai Massage</h1>
+            <p class="service-lead-text" id="pageDesc">Традиционный тайский массаж в хлопковом костюме без масла.</p>
+
+            <!-- Duration Selector -->
+            <div class="page-duration-box">
+              <div class="page-dur-title">Выберите длительность сеанса:</div>
+              <div class="page-dur-chips" id="pageDurationChips"></div>
+            </div>
+
+            <!-- Price Breakdown with -20% -->
+            <div class="page-price-breakdown">
+              <div class="page-price-left">
+                <span class="page-price-orig">Базовая цена в салоне: <s id="pageBasePrice">950 ฿</s></span>
+                <span style="font-size: 11.5px; color: var(--green-accent); font-weight: 700;">🔥 Выгода 20% при онлайн-оплате</span>
+              </div>
+              <div class="page-price-discounted" id="pageDiscountPrice">760 ฿</div>
+            </div>
+          </div>
+
+          <!-- Guest & Date Picker on Detail Page -->
+          <div class="page-guest-date-box">
+            <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--coal-muted);">Гости и дата:</div>
+            <div class="page-guests-chips">
+              <div class="page-guest-chip active" id="pageGuest1" onclick="setPageGuestCount(1)">1 гость</div>
+              <div class="page-guest-chip" id="pageGuest2" onclick="setPageGuestCount(2)">2 парный</div>
+              <div class="page-guest-chip" id="pageGuest3" onclick="setPageGuestCount(3)">3+ гостей</div>
+            </div>
+            <div class="page-datetime-row">
+              <input type="date" class="form-input" id="pageBookingDate">
+              <select class="form-select" id="pageBookingTimeSlot">
+                <option value="Утро (10:00 - 13:00)">☀️ Утро</option>
+                <option value="День (13:00 - 17:00)" selected>🌤️ День</option>
+                <option value="Вечер (17:00 - 22:00)">🌙 Вечер</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Direct Action Buttons Stack -->
+          <div class="page-actions-stack">
+            <button class="btn-stripe-pay" onclick="openStripeFromPage()">
+              <span>🔥 Оплатить онлайн со скидкой -20% (<span id="pageBtnStripePrice">760 THB</span>)</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+
+            <button class="btn-free-booking" onclick="openFreeBookingModalFromPage()">
+              <span>🔘 Забронировать без предоплаты (оплата в салоне)</span>
+            </button>
+
+            <button class="btn-tertiary-cart" onclick="addCurrentPageServiceToCart()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              <span>Добавить в корзину</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Deep Content: Philosophy, 4 Steps of Ritual, Ingredients & Benefits -->
+      <div class="service-deep-content">
+        <!-- Main Body Details -->
+        <div>
+          <!-- The Ritual Story -->
+          <div class="content-card philosophy-card">
+            <h2 class="section-h2">
+              <span>🌿 Философия и описание ритуала</span>
+            </h2>
+            <div class="philosophy-text" id="pageFullStory"></div>
+          </div>
+
+          <!-- Step-by-Step Experience (Dynamic) -->
+          <div class="content-card">
+            <h2 class="section-h2">
+              <span>✨ Как проходит сеанс в NUA</span>
+            </h2>
+            <div class="ritual-steps" id="pageRitualSteps"></div>
+          </div>
+
+          <!-- Benefits Grid (Dynamic) -->
+          <div class="content-card">
+            <h2 class="section-h2">
+              <span>🎯 Результат и показания</span>
+            </h2>
+            <div class="benefits-chips-grid" id="pageBenefitsGrid"></div>
+          </div>
+
+          <!-- Ingredients -->
+          <div class="content-card">
+            <h2 class="section-h2">
+              <span>🧴 Что используется в процедуре</span>
+            </h2>
+            <div class="ingredients-text" id="pageIngredients"></div>
+          </div>
+        </div>
+
+        <!-- Sticky Sidebar: Location & Salon Quality -->
+        <div class="sidebar-sticky-wrapper">
+          <div class="sidebar-sticky-card">
+            <div class="side-info-row">
+              <span class="side-icon">📍</span>
+              <div class="side-text">
+                <strong>Филиал Раваи (Fisherman Way)</strong>
+                <p>Уютное уединенное пространство с премиальной атмосферой и удобной парковкой.</p>
+              </div>
+            </div>
+
+            <div class="side-info-row">
+              <span class="side-icon">🌿</span>
+              <div class="side-text">
+                <strong>Органические ингредиенты</strong>
+                <p id="sideIngredientsShort">Используем только натуральные нерафинированные масла первого отжима и свежие тайские травы.</p>
+              </div>
+            </div>
+
+            <div class="side-info-row">
+              <span class="side-icon">👩‍⚕️</span>
+              <div class="side-text">
+                <strong>Сертифицированные мастера</strong>
+                <p>Дипломированные терапевты высшей квалификации с глубоким знанием анатомии.</p>
+              </div>
+            </div>
+
+            <div class="side-info-row">
+              <span class="side-icon">💳</span>
+              <div class="side-text">
+                <strong>Безопасная оплата со скидкой</strong>
+                <p>Stripe Checkout с мгновенной фиксацией скидки -20% и квитанцией на Email.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related Treatments Slider -->
+      <section class="related-section">
+        <h2 class="related-title">Рекомендуем также попробовать</h2>
+        <div class="products-grid" id="relatedProductsGrid"></div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 1: INTERACTIVE BOOKING MODAL (QUICK VIEW)
+       ======================================================================== -->
+  <div class="modal-overlay" id="quickViewModal">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeAllModals()" title="Закрыть">✕</button>
+
+      <!-- Left Column: Details & Gallery -->
+      <div class="modal-left-col">
+        <div class="modal-main-img-box">
+          <img src="" alt="" class="modal-main-img" id="modalMainImg">
+        </div>
+        <div class="modal-thumbs" id="modalThumbs"></div>
+
+        <div class="modal-service-info">
+          <div class="modal-category-badge" id="modalCategory">MASSAGE THERAPY</div>
+          <h2 class="modal-title" id="modalTitle">Authentic Thai Massage</h2>
+          <p class="modal-desc" id="modalDesc">Традиционный тайский массаж в хлопковом костюме без масла.</p>
+
+          <div style="margin-top: 4px;">
+            <a href="javascript:void(0)" onclick="openCurrentModalAsDedicatedPage()" style="color: var(--terra); font-size: 13px; font-weight: 700; text-decoration: underline;">
+              Открыть полную отдельную страницу услуги →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: 3-Step Interactive Booking Form -->
+      <div class="modal-form-col">
+        <!-- Step 1: Duration, Guests & Slot -->
+        <div>
+          <div class="form-step-title">
+            <span class="step-tag">Шаг 1</span>
+            <span>Длительность, гости и время</span>
+          </div>
+
+          <!-- Duration selection -->
+          <div style="margin-bottom: 10px;">
+            <div style="font-size: 11.5px; color: var(--coal-muted); margin-bottom: 4px; font-weight: 600;">Длительность сеанса:</div>
+            <div class="modal-dur-options" id="modalDurationButtons" style="display: flex; gap: 6px; flex-wrap: wrap;"></div>
+          </div>
+
+          <!-- Location -->
+          <div class="static-location-banner">
+            <span>📍</span>
+            <div><strong>Филиал Раваи:</strong> Fisherman Way, Rawai, Phuket</div>
+          </div>
+
+          <!-- Guests -->
+          <div class="guests-chips">
+            <div class="guest-chip active" id="guest1" onclick="setGuestCount(1)">1 гость</div>
+            <div class="guest-chip" id="guest2" onclick="setGuestCount(2)">2 гостя (парный)</div>
+            <div class="guest-chip" id="guest3" onclick="setGuestCount(3)">3+ гостей</div>
+          </div>
+
+          <!-- Date/Time slot -->
+          <div class="datetime-row">
+            <input type="date" class="form-input" id="bookingDate">
+            <select class="form-select" id="bookingTimeSlot">
+              <option value="Утро (10:00 - 13:00)">☀️ Утро (10:00 - 13:00)</option>
+              <option value="День (13:00 - 17:00)" selected>🌤️ День (13:00 - 17:00)</option>
+              <option value="Вечер (17:00 - 22:00)">🌙 Вечер (17:00 - 22:00)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Step 2: Price Calculation Breakdown (-20% Lead Magnet) -->
+        <div>
+          <div class="form-step-title">
+            <span class="step-tag">Шаг 2</span>
+            <span>Расчет стоимости со скидкой</span>
+          </div>
+
+          <div class="price-calc-box">
+            <div class="calc-row regular">
+              <span>Базовая цена (<span id="calcGuestsLabel">1 гость</span>):</span>
+              <s id="calcBasePrice">950 THB</s>
+            </div>
+            <div class="calc-row discount">
+              <span>Скидка при онлайн-оплате (-20%):</span>
+              <span id="calcDiscountVal">−190 THB</span>
+            </div>
+            <div class="calc-row total">
+              <span>Итого к оплате онлайн:</span>
+              <span class="calc-total-val" id="calcOnlineTotal">760 THB</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Contact Details -->
+        <div>
+          <div class="form-step-title">
+            <span class="step-tag">Шаг 3</span>
+            <span>Контакты гостя</span>
+          </div>
+
+          <div class="contact-inputs-grid">
+            <input type="text" class="form-input" id="clientName" placeholder="Ваше имя" required>
+            <input type="tel" class="form-input" id="clientPhone" placeholder="Телефон / WhatsApp (+...)" required>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="form-actions-stack">
+          <button class="btn-stripe-pay" onclick="openStripeCheckoutModal()">
+            <span>🔥 Оплатить со скидкой -20% (<span id="btnStripePrice">760 THB</span>)</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+
+          <button class="btn-free-booking" onclick="submitFreeBookingDirect()">
+            <span>🔘 Забронировать без предоплаты (оплата в салоне)</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 2: INTERACTIVE STRIPE CHECKOUT SCREEN
+       ======================================================================== -->
+  <div class="modal-overlay" id="stripeCheckoutModal">
+    <div class="stripe-modal-card">
+      <button class="modal-close-btn" onclick="closeAllModals()" title="Закрыть">✕</button>
+
+      <!-- Left Column: Stripe Summary -->
+      <div class="stripe-summary-col">
+        <div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 20px; color: #64748B; font-size: 13px; font-weight: 600;">
+            <img src="assets/img/6741aa2488f0662deaa71c80_logo.png" alt="NUA" style="height: 28px;">
+            <span>NUA Thai Massage</span>
+          </div>
+
+          <div style="font-size: 13px; color: #64748B; text-transform: uppercase; font-weight: 700;">К оплате со скидкой 20%</div>
+          <div class="stripe-price-total" id="stripeModalAmount">760.00 ฿</div>
+
+          <div style="font-size: 18px; font-weight: 700; color: #0F172A; margin-bottom: 4px;" id="stripeModalServiceTitle">Authentic Thai Massage</div>
+          <div style="font-size: 12.5px; color: #64748B; margin-bottom: 18px;" id="stripeModalServiceMeta">60 min • 1 гость • Раваи</div>
+
+          <div style="background: #F1F5F9; border-radius: 8px; padding: 12px; font-size: 12.5px; color: #475569; display: flex; flex-direction: column; gap: 4px;">
+            <div style="display: flex; justify-content: space-between;">
+              <span>Базовый прайс:</span>
+              <span id="stripeModalBasePrice">950 THB</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; color: #16A34A; font-weight: 700;">
+              <span>Онлайн скидка (-20%):</span>
+              <span id="stripeModalDiscount">-190 THB</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-weight: 700; border-top: 1px dashed #CBD5E1; padding-top: 4px; color: #0F172A;">
+              <span>Итого:</span>
+              <span id="stripeModalFinalPrice">760 THB</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 6px; color: #94A3B8; font-size: 12px; margin-top: 20px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span>Защищено Stripe 256-bit SSL шифрованием</span>
+        </div>
+      </div>
+
+      <!-- Right Column: Stripe Payment Form -->
+      <div class="stripe-form-col">
+        <button class="stripe-express-pay" onclick="simulateStripePaymentSuccess()">
+          <span>Оплатить через</span>
+          <span style="font-family: -apple-system, sans-serif; font-weight: 800; font-size: 16px;">Pay</span>
+        </button>
+
+        <div class="stripe-divider">или банковской картой</div>
+
+        <div>
+          <label style="font-size: 12px; font-weight: 600; color: #334155; display: block; margin-bottom: 4px;">Email для квитанции</label>
+          <input type="email" class="stripe-input" id="stripeEmail" placeholder="client@example.com" value="guest@iamnua.com">
+        </div>
+
+        <div>
+          <label style="font-size: 12px; font-weight: 600; color: #334155; display: block; margin-bottom: 4px;">Данные карты</label>
+          <input type="text" class="stripe-input" placeholder="4242 •••• •••• 4242" value="•••• •••• •••• 4242">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px;">
+            <input type="text" class="stripe-input" placeholder="ММ / ГГ" value="12/28">
+            <input type="text" class="stripe-input" placeholder="CVC" value="987">
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size: 12px; font-weight: 600; color: #334155; display: block; margin-bottom: 4px;">Имя на карте</label>
+          <input type="text" class="stripe-input" id="stripeCardholder" placeholder="CARDHOLDER NAME">
+        </div>
+
+        <button class="stripe-submit-btn" onclick="simulateStripePaymentSuccess()">
+          Оплатить <span id="stripePayBtnAmount">760 ฿</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 3: SUCCESS CONFIRMATION SCREEN
+       ======================================================================== -->
+  <div class="modal-overlay" id="successModal">
+    <div class="success-card">
+      <div class="success-icon-box">✓</div>
+      <h2 style="font-size: 22px; font-weight: 800; color: var(--coal); margin-bottom: 8px;" id="successTitle">Бронирование подтверждено!</h2>
+      <p style="color: var(--coal-muted); font-size: 14px;" id="successDesc">Спасибо! Ваша заявка успешно принята.</p>
+
+      <div class="success-order-box" id="successOrderBox"></div>
+
+      <button class="btn-free-booking" style="margin: 0 auto; background: var(--coal); color: #FFFFFF;" onclick="closeAllModals(); navigateToCatalog();">Вернуться в каталог</button>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       SLIDE-OVER CART DRAWER
+       ======================================================================== -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay" onclick="closeCartDrawerOnOverlay(event)">
+    <div class="cart-drawer">
+      <div class="drawer-header">
+        <h3 style="font-size: 18px; font-weight: 700; color: var(--coal); display: flex; align-items: center; gap: 8px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          Корзина (<span id="drawerCount">0</span>)
+        </h3>
+        <button style="background: transparent; border: none; font-size: 18px; cursor: pointer;" onclick="closeCartDrawer()">✕</button>
+      </div>
+
+      <div class="drawer-items" id="drawerItems"></div>
+
+      <div class="drawer-footer">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 13px; color: var(--coal-muted);">Итого со скидкой -20%:</span>
+          <span style="font-size: 20px; font-weight: 800; color: var(--coal);" id="drawerTotalPrice">0 ฿</span>
+        </div>
+
+        <button class="btn-stripe-pay" style="width: 100%; border-radius: var(--radius-full);" onclick="proceedCartStripeCheckout()">
+          🔥 Оплатить всю корзину со скидкой -20%
+        </button>
+
+        <button class="btn-free-booking" style="width: 100%; border-radius: var(--radius-full);" onclick="proceedCartFreeBooking()">
+          🔘 Забронировать всю корзину без предоплаты
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Message -->
+  <div class="toast-msg" id="toastMsg">✓ Услуга добавлена в корзину</div>
+
+  <!-- ========================================================================
+       APPLICATION JAVASCRIPT
+       ======================================================================== -->
+  <script>
+    const servicesData = [
+      {
+        id: "ath",
+        title: "Authentic Thai Massage",
+        category: "FIRST TIME",
+        categoryRu: "Классика & Первое знакомство",
+        colIndex: 1,
+        desc: "Традиционный тайский массаж в хлопковом костюме без масла. Глубокое точечное воздействие и ритмичная растяжка возвращают баланс тела.",
+        fullStory: "Традиционный тайский массаж — это древняя холистическая система оздоровления, сочетающая в себе глубокую точечную проработку энергетических меридианов Sen и элементы пассивной йоги. Сеанс проходит на традиционном мате в удобном хлопковом костюме без использования масла. Мастер бережно прорабатывает каждый сустав и мышцу, снимая накопившуюся усталость и блоки.",
+        ritualSteps: [
+          { title: "Приветственное омовение стоп", text: "Очищающая церемония с морской солью, соком лайма и теплыми эфирными маслами для мгновенного снятия усталости с дороги." },
+          { title: "Мягкий разогрев Sen-линий", text: "Мастер ладонями и большими пальцами прорабатывает 10 основных энергетических меридианов, разогревая тело для глубокой работы." },
+          { title: "Глубокая проработка и пассивная растяжка", text: "Плавные скрутки, раскрытие грудного отдела и суставов, элементы йоги — снятие глубоких спазмов в спине и воротниковой зоне." },
+          { title: "Восстанавливающий тайский травяной чай", text: "Завершающий ритуал отдыха с органическим травяным сбором лемонграсса и пандана в лаунж-зоне салона." }
+        ],
+        benefits: ["Снятие хронических мышечных зажимов", "Восстановление подвижности суставов", "Улучшение лимфотока и циркуляции", "Глубокая ментальная перезагрузка", "Снижение стресса и усталости", "Легкость в теле и прилив энергии"],
+        ingredients: "Хлопковый костюм для массажа, органический травяной сбор лемонграсса и пандана для чая после сеанса",
+        image: "assets/services/Authentic%20Thai%20Massage/Cover_authentic.PNG",
+        thumbs: [
+          "assets/services/Authentic%20Thai%20Massage/Cover_authentic.PNG",
+          "assets/services/Authentic%20Thai%20Massage/5082F21D-2AA1-4F50-B044-8BC71518EA09.PNG",
+          "assets/services/Authentic%20Thai%20Massage/Gemini_Generated_Image_i3vxmri3vxmri3vx.jpeg"
+        ],
+        variants: [
+          { duration: "60 min", price: 950, sku: "ATH-60" },
+          { duration: "90 min", price: 1350, sku: "ATH-90" },
+          { duration: "120 min", price: 1850, sku: "ATH-120" }
+        ],
+        selectedVariantIndex: 0
+      },
+      {
+        id: "sgnc",
+        title: "Signature Island Coconut Massage",
+        category: "FIRST TIME",
+        categoryRu: "Классика & Знакомство",
+        colIndex: 1,
+        desc: "Теплый масляный массаж с натуральным кокосовым маслом прямого отжима. Плавные движения снимают напряжение и глубоко питают кожу.",
+        fullStory: "Фирменный ритуал с теплым 100% натуральным кокосовым маслом острова Пхукет. Масло прямого холодного отжима глубоко увлажняет кожу после солнца, а текучие медитативные движения мастера погружают разум в состояние глубокого покоя.",
+        ritualSteps: [
+          { title: "Церемония с кокосовым маслом", text: "Свежее масло холодного отжима подогревается до идеальной температуры в масляной бане и наносится на кожу тёплыми обволакивающими движениями." },
+          { title: "Длинные текучие движения по всему телу", text: "Мастер использует шведскую и балийскую технику — медленные непрерывные масляные поглаживания, погружая разум в медитативное состояние." },
+          { title: "Глубокое питание кожи и массаж спины", text: "Особое внимание спине и плечам: кокосовое масло восстанавливает гидробаланс эпидермиса, снимая сухость после солнца и морской воды." },
+          { title: "Горячее полотенце и финальный массаж головы", text: "Завершение горячим ароматизированным полотенцем на шее и нежным массажем кожи головы для полного расслабления." }
+        ],
+        benefits: ["Глубокое увлажнение и питание кожи", "Снятие мышечного напряжения", "Восстановление после солнечных ожогов", "Медитативная релаксация", "Улучшение эластичности кожи"],
+        ingredients: "100% натуральное кокосовое масло холодного отжима с острова Пхукет",
+        image: "assets/services/Signature%20Island%20Coconut%20Massage/signature_1.png",
+        thumbs: [
+          "assets/services/Signature%20Island%20Coconut%20Massage/signature_1.png",
+          "assets/services/Signature%20Island%20Coconut%20Massage/Vector%20(3).png"
+        ],
+        variants: [
+          { duration: "60 min", price: 1350, sku: "SGNC-60" },
+          { duration: "90 min", price: 1850, sku: "SGNC-90" },
+          { duration: "120 min", price: 2350, sku: "SGNC-120" }
+        ],
+        selectedVariantIndex: 0
+      },
+      {
+        id: "vlv",
+        title: "Velvet Aroma Oil Massage",
+        category: "FIRST TIME",
+        categoryRu: "Классика & Знакомство",
+        colIndex: 1,
+        desc: "Тайский аромамассаж с натуральными эфирными маслами: текучие техники, которые снимают стресс и восстанавливают душевный покой.",
+        fullStory: "Сеанс ароматерапии с премиальными органическими эфирными маслами на выбор: лаванда, лемонграсс, жасмин или сандал. Мягкие обволакивающие техники бережно снимают спазмы и возвращают легкое гармоничное дыхание.",
+        ritualSteps: [
+          { title: "Выбор аромата эфирного масла", text: "Вы выбираете любимый аромат из коллекции: лаванда для сна, лемонграсс для бодрости, жасмин для гармонии или сандал для медитации." },
+          { title: "Ароматизация пространства и аппликация", text: "Масло нагревается и наносится по центральным меридианам тела. Комната заполняется лёгким ароматом для полного погружения." },
+          { title: "Мягкие обволакивающие техники", text: "Бережные перекатывающие движения вдоль мышечных волокон снимают спазмы и возвращают легкое ритмичное дыхание." },
+          { title: "Финальная релаксация с горячим компрессом", text: "Горячий ароматизированный компресс на плечи и шею. Лёгкий массаж висков завершает сеанс полного расслабления." }
+        ],
+        benefits: ["Глубокая ароматерапевтическая релаксация", "Снятие нервного напряжения", "Улучшение качества сна", "Восстановление эмоционального баланса", "Мягкое увлажнение кожи эфирными маслами"],
+        ingredients: "Премиальные органические эфирные масла на выбор: лаванда, лемонграсс, жасмин или сандал",
+        image: "assets/services/Velvet%20Aroma%20Oil/velvet_1.png",
+        thumbs: [
+          "assets/services/Velvet%20Aroma%20Oil/velvet_1.png",
+          "assets/services/Velvet%20Aroma%20Oil/2.JPG"
+        ],
+        variants: [
+          { duration: "60 min", price: 950, sku: "VLV-60" },
+          { duration: "90 min", price: 1350, sku: "VLV-90" },
+          { duration: "120 min", price: 1850, sku: "VLV-120" }
+        ],
+        selectedVariantIndex: 0
+      },
+      {
+        id: "snbr",
+        title: "Sunburn Rescue (Алоэ Вера)",
+        category: "FIRST TIME",
+        categoryRu: "Классика & Восстановление",
+        colIndex: 1,
+        desc: "Охлаждающий массаж всего тела с чистым соком алоэ вера. Нежная терапия успокаивает кожу после солнца и снимает воспаление.",
+        fullStory: "Спасение для чувствительной или обгоревшей на солнце кожи. Чистый охлажденный гель алоэ вера восстанавливает гидробаланс эпидермиса, устраняет покраснения и дарит чувство прохлады и облегчения.",
+        ritualSteps: [
+          { title: "Диагностика состояния кожи", text: "Мастер осматривает интенсивность солнечных повреждений и подбирает оптимальное давление — от ультралёгкого до лёгкого." },
+          { title: "Нанесение охлаждённого геля алоэ вера", text: "Чистый органический гель алоэ вера охлаждается и обильно наносится на все зоны с покраснением — мгновенное облегчение." },
+          { title: "Деликатный восстанавливающий массаж", text: "Плавные касательные движения без давления распределяют гель по коже, активируя естественную регенерацию клеток." },
+          { title: "Увлажняющая аппликация и холодный компресс", text: "Завершающая увлажняющая маска из алоэ с ментолом, прохладные компрессы на плечи и спину для стойкого охлаждающего эффекта." }
+        ],
+        benefits: ["Мгновенное охлаждение обгоревшей кожи", "Снятие покраснения и воспаления", "Восстановление гидробаланса эпидермиса", "Ускорение регенерации клеток кожи", "Защита от шелушения"],
+        ingredients: "Чистый органический гель алоэ вера, ментоловый экстракт, увлажняющая маска на основе алоэ",
+        image: "assets/services/Sunburn%20Rescue/Vector.png",
+        thumbs: [
+          "assets/services/Sunburn%20Rescue/Vector.png"
+        ],
+        variants: [
+          { duration: "60 min", price: 950, sku: "SNBR-60" },
+          { duration: "90 min", price: 1350, sku: "SNBR-90" },
+          { duration: "120 min", price: 1850, sku: "SNBR-120" }
+        ],
+        selectedVariantIndex: 0
+      },
+      {
+        id: "ft",
+        title: "Thai Foot Massage",
+        category: "FIRST TIME",
+        categoryRu: "Рефлексотерапия стоп",
+        colIndex: 1,
+        desc: "Традиционная рефлексотерапия стоп. Точечный массаж активирует энергетические линии, даря медитативный покой и легкость в ногах.",
+        fullStory: "Древнейшая техника рефлекторного массажа стоп специальной тиковой палочкой. Стимуляция биологически активных точек нормализует работу внутренних органов, снимает отечность после прогулок и перелетов.",
+        ritualSteps: [
+          { title: "Расслабляющая ванночка для ног", text: "Тёплая ванночка с морской солью, соком кафрского лайма и лепестками цветов снимает усталость после прогулок." },
+          { title: "Точечная проработка тиковой палочкой", text: "Мастер использует специальную тиковую палочку для точечного давления на рефлекторные зоны стоп, связанные с внутренними органами." },
+          { title: "Массаж голеней и ступней", text: "Плавные давящие движения от щиколотки до пальцев улучшают венозный отток и лимфодренаж нижних конечностей." },
+          { title: "Охлаждающий бальзам и компресс", text: "Нанесение охлаждающего травяного бальзама и тёплый компресс для стойкого эффекта лёгкости и свежести в ногах." }
+        ],
+        benefits: ["Снятие отечности ног после перелета", "Стимуляция рефлекторных зон", "Улучшение венозного кровообращения", "Нормализация сна", "Легкость и свежесть в ногах"],
+        ingredients: "Морская соль, сок кафрского лайма, тиковая палочка для рефлексотерапии, охлаждающий травяной бальзам",
+        image: "assets/services/Thai%20Foot%20Massage/5776B538-EF0C-46A7-9F0E-7AB893672849.JPG",
+        thumbs: [
+          "assets/services/Thai%20Foot%20Massage/5776B538-EF0C-46A7-9F0E-7AB893672849.JPG",
+          "assets/services/Thai%20Foot%20Massage/2.JPG"
+        ],
+        variants: [
+          { duration: "30 min", price: 550, sku: "FT-30" },
+          { duration: "60 min", price: 750, sku: "FT-60" },
+          { duration: "90 min", price: 1080, sku: "FT-90" },
+          { duration: "120 min", price: 1440, sku: "FT-120" }
+        ],
+        selectedVariantIndex: 1
+      },
+      {
+        id: "hdn",
+        title: "Head & Neck",
+        category: "FIRST TIME",
+        categoryRu: "Экспресс-релакс",
+        colIndex: 1,
+        desc: "Массаж головы, шеи и воротниковой зоны без масла. Направленная работа для снятия зажимов от работы за компьютером.",
+        fullStory: "Прицельная работа с шейно-воротниковой зоной, основанием черепа и височной областью. Моментально устраняет головную боль напряжения, улучшает кровоснабжение мозга и осанку.",
+        ritualSteps: [
+          { title: "Оценка зон напряжения", text: "Мастер пальпирует трапециевидные мышцы, основание черепа и виски, определяя главные триггерные точки зажимов." },
+          { title: "Глубокий массаж воротниковой зоны", text: "Интенсивная проработка трапеций и дельтовидных мышц техникой разминания — устранение «компьютерной» ригидности." },
+          { title: "Акупрессура основания черепа и висков", text: "Точечное давление на точки фэн-чи и тай-ян снимает головную боль напряжения и улучшает кровообращение мозга." },
+          { title: "Расслабляющий массаж кожи головы", text: "Лёгкие круговые движения по волосистой части головы снимают остаточное напряжение и дарят ощущение ясности." }
+        ],
+        benefits: ["Устранение головной боли напряжения", "Снятие зажимов шейно-воротниковой зоны", "Улучшение кровоснабжения мозга", "Коррекция осанки", "Снижение напряжения глаз"],
+        ingredients: "Без масла. Техника выполняется на сухое тело в одежде.",
+        image: "assets/services/Head%20%26%20Neck/neck_1.png",
+        thumbs: [
+          "assets/services/Head%20%26%20Neck/neck_1.png",
+          "assets/services/Head%20%26%20Neck/2.JPG"
+        ],
+        variants: [
+          { duration: "30 min", price: 550, sku: "HDN-30" },
+          { duration: "60 min", price: 750, sku: "HDN-60" },
+          { duration: "90 min", price: 1080, sku: "HDN-90" }
+        ],
+        selectedVariantIndex: 1
+      },
+      {
+        id: "bmbh",
+        title: "Bamboo Healing (Бамбук)",
+        category: "HEALING",
+        categoryRu: "Глубокая терапия",
+        colIndex: 2,
+        desc: "Бамбуковый массаж без масла: структурная работа для осанки, подвижности суставов, растяжки и снятия хронических спазмов.",
+        fullStory: "Уникальная методика раскатывания и глубокого давления полированными бамбуковыми стволами различного диаметра. Прорабатывает глубокие фасциальные слои, выравнивая мышечный баланс без боли.",
+        ritualSteps: [
+          { title: "Подготовка бамбуковых инструментов", text: "Мастер подбирает стволы оптимального диаметра: тонкие для ступней и рук, средние для спины, широкие для бедер и ног." },
+          { title: "Раскатывание фасций вдоль позвоночника", text: "Бамбуковый ствол мягко раскатывает паравертебральные мышцы, вытягивая зажимы и выравнивая осанку без болевых ощущений." },
+          { title: "Точечное давление на триггерные узлы", text: "Торцевая часть бамбука прицельно прорабатывает лопатки, поясницу и илиотибиальный тракт бедра — зоны хронического напряжения." },
+          { title: "Растяжка и восстановление подвижности", text: "Пассивная растяжка с использованием бамбуковых рычагов увеличивает амплитуду движений в плечевых и тазобедренных суставах." }
+        ],
+        benefits: ["Восстановление осанки", "Снятие фасциальных спаек", "Увеличение подвижности суставов", "Устранение хронических мышечных зажимов", "Выравнивание мышечного баланса"],
+        ingredients: "Полированные бамбуковые стволы различного диаметра, без масла",
+        image: "assets/services/Bamboo%20Healing/cover.png",
+        thumbs: [
+          "assets/services/Bamboo%20Healing/cover.png",
+          "assets/services/Bamboo%20Healing/22C8F104-CB91-49FD-BB32-7F992FC4B1DE.PNG",
+          "assets/services/Bamboo%20Healing/7468BDDF-651C-4BF0-9AC6-B05BC89347C4.PNG"
+        ],
+        variants: [
+          { duration: "60 min", price: 1350, sku: "BMBH-60" },
+          { duration: "90 min", price: 1850, sku: "BMBH-90" },
+          { duration: "120 min", price: 2350, sku: "BMBH-120" }
+        ],
+        selectedVariantIndex: 0
+      },
+      {
+        id: "bmbs",
+        title: "Bamboo Sport Deep Tissue",
+        category: "HEALING",
+        categoryRu: "Спортивная терапия",
+        colIndex: 2,
+        desc: "Глубокотканный массаж с маслом и бамбуком. Триггерная проработка мышц для снятия плотных зажимов после спорта.",
+        fullStory: "Интенсивная терапия для спортсменов, серферов и любителей активного отдыха. Сочетание бамбуковых инструментов и глубокого триггерного давления устраняет молочную кислоту и ускоряет восстановление мышц.",
+        ritualSteps: [
+          { title: "Консультация по зонам боли", text: "Мастер уточняет вид спортивной нагрузки и определяет перегруженные мышечные группы для прицельной работы." },
+          { title: "Масляный разогрев и миофасциальный релиз", text: "Разогревающее масло с камфорой наносится на проблемные зоны. Бамбуковый ствол раскатывает фасциальные адгезии." },
+          { title: "Глубокая триггерная проработка локтями", text: "Комбинация локтевого давления и бамбукового инструмента устраняет молочную кислоту из квадрицепсов, икр и трапеций." },
+          { title: "Спортивная растяжка и холодный компресс", text: "Пассивная PNF-растяжка восстанавливает эластичность мышц. Холодный компресс на плечи для быстрого восстановления." }
+        ],
+        benefits: ["Ускорение восстановления после тренировок", "Выведение молочной кислоты", "Устранение мышечной крепатуры", "Восстановление эластичности мышц", "Профилактика спортивных травм"],
+        ingredients: "Разогревающее масло с камфорой, полированные бамбуковые стволы, охлаждающие компрессы",
+        image: "assets/services/Bamboo%20Sport/bamboo%20sport_1.jpg",
+        thumbs: [
+          "assets/services/Bamboo%20Sport/bamboo%20sport_1.jpg",
+          "assets/services/Bamboo%20Sport/2.jpg",
+          "assets/services/Bamboo%20Sport/3.png"
+        ],
+        variants: [
+          { duration: "60 min", price: 1550, sku: "BMBS-60" },
+          { duration: "90 min", price: 2250, sku: "BMBS-90" },
+          { duration: "120 min", price: 2550, sku: "BMBS-120" }
+        ],
+        selectedVariantIndex: 0
+      },
+      {
+        id: "vlcn",
+        title: "Volcanic Hot Stone Therapy",
+        category: "HEALING",
+        categoryRu: "Тепловая терапия",
+        colIndex: 2,
+        desc: "Массаж теплыми вулканическими камнями. Мягкое тепло глубоко расслабляет мышцы, снимает спазмы и улучшает микроциркуляцию.",
+        fullStory: "Базальтовые камни вулканического происхождения бережно нагреваются и укладываются вдоль чакр и позвоночника. Тепло проникает на глубину до 4 см в мышечные волокна, снимая даже застарелые блоки.",
+        ritualSteps: [
+          { title: "Подготовка горячих базальтовых камней", text: "Камни вулканического происхождения нагреваются до 52–56°C в водяной бане и раскладываются по размеру для разных зон тела." },
+          { title: "Расстановка камней вдоль чакр", text: "Плоские горячие камни укладываются вдоль позвоночника, на ладони и между пальцами ног — тепло проникает на глубину до 4 см." },
+          { title: "Массаж горячими камнями по маслу", text: "Мастер скользит разогретыми камнями по спине и ногам, чередуя с ладонным давлением — глубочайшее расслабление мышц." },
+          { title: "Контрастная терапия и релаксация", text: "Чередование горячих базальтовых и прохладных мраморных камней усиливает микроциркуляцию и снимает отечность." }
+        ],
+        benefits: ["Глубокое расслабление мышц теплом", "Улучшение микроциркуляции крови", "Снятие хронических спазмов", "Балансировка энергетических центров", "Успокоение нервной системы"],
+        ingredients: "Базальтовые камни вулканического происхождения, мраморные камни для контрастной терапии, органическое массажное масло",
+        image: "assets/services/Volcanic%20Hot%20Stone/volcanic_1.png",
+        thumbs: [
+          "assets/services/Volcanic%20Hot%20Stone/volcanic_1.png",
+          "assets/services/Volcanic%20Hot%20Stone/A1C33E27-6C97-40C0-B40A-5F61F91CB29F.JPG"
+        ],
+        variants: [
+          { duration: "60 min", price: 1350, sku: "VLCN-60" },
+          { duration: "90 min", price: 1850, sku: "VLCN-90" },
+          { duration: "120 min", price: 2350, sku: "VLCN-120" }
+        ],
+        selectedVariantIndex: 0
+      },
+      {
+        id: "hrbcm",
+        title: "Thai Herb Aroma (Мешочки)",
+        category: "HEALING",
+        categoryRu: "Травяная терапия",
+        colIndex: 2,
+        desc: "Массаж горячими мешочками со сбором целебных трав. Противовоспалительные компоненты облегчают боль в мышцах и расслабляют.",
+        fullStory: "Тканевые мешочки с имбирем Plai, куркумой, кафрским лаймом и камфорой распариваются и мягко прикладываются к телу. Фитонциды и эфирные испарения трав оздоравливают дыхательные пути и снимают мышечное воспаление.",
+        ritualSteps: [
+          { title: "Подготовка травяных мешочков", text: "Тканевые мешочки со свежим имбирем Plai, куркумой, кафрским лаймом и камфорой распариваются на пару до высвобождения фитонцидов." },
+          { title: "Прикладывание мешочков к телу", text: "Горячие мешочки мягко прижимаются и прокатываются по спине, плечам и ногам — тепло и эфирные масла трав проникают через кожу." },
+          { title: "Глубокий массаж с чередованием техник", text: "Мастер чередует давление мешочков с ладонным массажем, усиливая противовоспалительное действие трав на глубокие мышечные слои." },
+          { title: "Ингаляция эфирных паров и отдых", text: "Горячий мешочек кладётся рядом с лицом для ароматерапевтической ингаляции. Фитонциды очищают дыхательные пути." }
+        ],
+        benefits: ["Противовоспалительный эффект", "Облегчение мышечной боли", "Ароматерапия для дыхательных путей", "Ускорение регенерации тканей", "Детоксикация через кожу"],
+        ingredients: "Свежий имбирь Plai, куркума, кафрский лайм, камфора, тканевые мешочки, органическое массажное масло",
+        image: "assets/services/Thai%20Herb%20Aroma/herb_1.png",
+        thumbs: [
+          "assets/services/Thai%20Herb%20Aroma/herb_1.png",
+          "assets/services/Thai%20Herb%20Aroma/Vector%20(4).png"
+        ],
+        variants: [
+          { duration: "60 min", price: 1550, sku: "HRBCM-60" },
+          { duration: "90 min", price: 2250, sku: "HRBCM-90" },
+          { duration: "120 min", price: 2550, sku: "HRBCM-120" }
+        ],
+        selectedVariantIndex: 0
+      },
+      {
+        id: "dtm",
+        title: "Regular Deep Tissue Massage",
+        category: "HEALING",
+        categoryRu: "Силовой массаж",
+        colIndex: 2,
+        desc: "Масляный массаж глубокого давления. Терапевт прорабатывает спазмированные участки локтями и предплечьями для снятия жесткости.",
+        fullStory: "Классический глубокотканный массаж с контролируемым анатомическим давлением. Мастер прицельно находит триггерные узлы в трапециях, пояснице и бедрах, возвращая телу абсолютную свободу движений.",
+        ritualSteps: [
+          { title: "Диагностика триггерных точек", text: "Мастер пальпирует мышечные цепи, находя узлы гипертонуса в трапециях, ромбовидных, пояснице и подвздошно-поясничной мышце." },
+          { title: "Разогрев маслом и поверхностная проработка", text: "Массажное масло с арникой наносится длинными движениями, разогревая поверхностные мышечные слои для глубокой работы." },
+          { title: "Глубокая проработка локтями и предплечьями", text: "Контролируемое анатомическое давление локтями в зонах наибольшего напряжения: лопатки, паравертебральные мышцы, IT-тракт бедра." },
+          { title: "Финальная интеграция и растяжка", text: "Лёгкие длинные движения объединяют проработанные зоны. Пассивная растяжка возвращает мышцам оптимальную длину." }
+        ],
+        benefits: ["Устранение глубоких мышечных зажимов", "Снятие триггерных болевых точек", "Восстановление свободы движений", "Уменьшение хронических болей в спине", "Улучшение осанки"],
+        ingredients: "Органическое массажное масло с экстрактом арники",
+        image: "assets/services/Regular%20Deep%20Tissue%20Massage/cover.jpeg",
+        thumbs: [
+          "assets/services/Regular%20Deep%20Tissue%20Massage/cover.jpeg",
+          "assets/services/Regular%20Deep%20Tissue%20Massage/910AEFBC-CA07-4420-80E4-E78622D64307-1667-000000935ECDCCFC.JPG"
+        ],
+        variants: [
+          { duration: "60 min", price: 1350, sku: "DTM-60" },
+          { duration: "90 min", price: 1850, sku: "DTM-90" },
+          { duration: "120 min", price: 2350, sku: "DTM-120" }
+        ],
+        selectedVariantIndex: 0
+      },
+      {
+        id: "grt",
+        title: "Golden Resonance Ceremony",
+        category: "HEALING",
+        categoryRu: "Звуковой спа-ритуал",
+        colIndex: 2,
+        desc: "Звуковая вибрационная церемония с тибетскими поющими чашами и премиальным маслом имбиря Plai. Гармония тела и разума.",
+        fullStory: "Сакральный церемониальный ритуал. Звуковые вибрации кованых тибетских чаш резонируют с клеточной структурой тела, мягко растворяя эмоциональные блоки и погружая в целительный тета-сон.",
+        ritualSteps: [
+          { title: "Медитативная настройка пространства", text: "Комната наполняется ароматом пало-санто. Мастер зажигает свечи и расставляет кованые тибетские чаши разного тона вокруг тела." },
+          { title: "Масляный массаж с имбирем Plai", text: "Премиальное масло имбиря Plai наносится плавными движениями — согревающий эффект готовит тело к вибрационному воздействию." },
+          { title: "Звуковая вибрационная терапия", text: "Поющие чаши размещаются на теле и вокруг головы. Вибрации определённых частот резонируют с клеточной структурой, растворяя блоки." },
+          { title: "Глубокая тета-медитация и пробуждение", text: "15-минутное погружение в тета-сон под непрерывный звук чаш. Плавное пробуждение колокольчиком и тёплый имбирный чай." }
+        ],
+        benefits: ["Глубокая медитативная релаксация", "Растворение эмоциональных блоков", "Балансировка нервной системы", "Улучшение качества сна", "Вибрационная гармонизация тела"],
+        ingredients: "Кованые тибетские поющие чаши, премиальное масло имбиря Plai, пало-санто, органический имбирный чай",
+        image: "assets/services/Golden%20Resonance%20Ceremony/sound%20therapy_hr.png",
+        thumbs: [
+          "assets/services/Golden%20Resonance%20Ceremony/sound%20therapy_hr.png",
+          "assets/services/Golden%20Resonance%20Ceremony/sound%20therapy_hr-1.png"
+        ],
+        variants: [
+          { duration: "90 min", price: 4590, sku: "GRT-90" }
+        ],
+        selectedVariantIndex: 0
+      },
+      {
+        id: "alf",
+        title: "Aloe Vera Facial Care",
+        category: "BEAUTY",
+        categoryRu: "Уход за лицом",
+        colIndex: 3,
+        desc: "Освежающий уход за лицом с натуральным алоэ вера. Восстанавливает гидробаланс, успокаивает раздражения и придает коже сияние.",
+        fullStory: "Нежный освежающий уход за кожей лица. Включает деликатное очищение, тонизацию, массаж охлаждающим гелем алоэ вера и нанесение питательной восстанавливающей маски.",
+        ritualSteps: [
+          { title: "Деликатное очищение и тонизация", text: "Мягкое молочко снимает макияж и загрязнения. Тоник с гиалуроновой кислотой подготавливает кожу к уходу." },
+          { title: "Освежающий массаж с гелем алоэ вера", text: "Охлаждённый гель алоэ вера наносится лёгкими лимфодренажными движениями по массажным линиям лица и шеи." },
+          { title: "Питательная маска с алоэ и витаминами", text: "Тканевая маска с экстрактом алоэ, витаминами E и C глубоко увлажняет и восстанавливает клеточный баланс." },
+          { title: "Финальный крем и SPF-защита", text: "Лёгкий увлажняющий крем с алоэ запечатывает влагу. Нанесение минерального SPF для защиты от тропического солнца." }
+        ],
+        benefits: ["Восстановление гидробаланса кожи", "Успокоение раздражений и покраснений", "Сияние и свежесть лица", "Увлажнение обезвоженной кожи", "Защита от фотостарения"],
+        ingredients: "Органический гель алоэ вера, гиалуроновая кислота, витамины E и C, минеральный SPF-крем",
+        image: "assets/services/Aloe%20Vera%20Facial/cover_aloe.png",
+        thumbs: [
+          "assets/services/Aloe%20Vera%20Facial/cover_aloe.png",
+          "assets/services/Aloe%20Vera%20Facial/8A737493-6C69-4832-8478-D4C88D3FCFF1.JPG"
+        ],
+        variants: [
+          { duration: "60 min", price: 1050, sku: "ALF-60" },
+          { duration: "90 min", price: 1850, sku: "ALF-90" }
+        ],
+        selectedVariantIndex: 0
+      },
+      {
+        id: "gs",
+        title: "Gua Sha Facial Care",
+        category: "BEAUTY",
+        categoryRu: "Скульптурирование лица",
+        colIndex: 3,
+        desc: "Скульптурирующий массаж лица пластиной Гуаша. Активирует лимфоток, снимает отечность и подтягивает овал лица.",
+        fullStory: "Скульптурный лимфодренажный массаж лица скребками из натурального нефрита и розового кварца. Устраняет утреннюю отечность, выравнивает рельеф кожи и подчеркивает скулы.",
+        ritualSteps: [
+          { title: "Очищение и нанесение масла жожоба", text: "Деликатное очищение мицеллярной водой. Тёплое масло жожоба создаёт скольжение для Гуаша и питает кожу." },
+          { title: "Лимфодренажные движения нефритом", text: "Нефритовая пластина Гуаша прорабатывает лимфатические протоки от центра лица к ушам — устранение утренней отечности." },
+          { title: "Скульптурирование скул и контура", text: "Розовый кварц точечно прорабатывает скуловую кость, подбородок и линию челюсти — подчёркивание естественного контура." },
+          { title: "Охлаждающий ролик и финальная сыворотка", text: "Криоролик закрывает поры и усиливает лифтинг-эффект. Антиоксидантная сыворотка запечатывает результат." }
+        ],
+        benefits: ["Устранение отечности лица", "Скульптурирование скул и контура", "Лимфодренаж и детоксикация", "Подтяжка овала лица", "Улучшение тонуса кожи"],
+        ingredients: "Нефритовая пластина Гуаша, розовый кварц, масло жожоба, криоролик, антиоксидантная сыворотка",
+        image: "assets/services/Gua%20Sha/gua%20sha_1.png",
+        thumbs: [
+          "assets/services/Gua%20Sha/gua%20sha_1.png",
+          "assets/services/Gua%20Sha/86F70CCA-B9ED-42BA-A470-14CFB63DD62A.JPG",
+          "assets/services/Gua%20Sha/8A737493-6C69-4832-8478-D4C88D3FCFF1.JPG"
+        ],
+        variants: [
+          { duration: "60 min", price: 1050, sku: "GS-60" },
+          { duration: "90 min", price: 1850, sku: "GS-90" }
+        ],
+        selectedVariantIndex: 0
+      },
+      {
+        id: "lff",
+        title: "Lifting Facial Skincare",
+        category: "BEAUTY",
+        categoryRu: "Премиум уход",
+        colIndex: 3,
+        desc: "Премиальный французский лифтинг-ритуал с моделирующими техниками для безупречной упругости кожи.",
+        fullStory: "Высокоэффективный моделирующий ритуал с использованием французской премиальной косметики. Глубокая проработка мимических мышц обеспечивает видимый подтягивающий эффект сразу после процедуры.",
+        ritualSteps: [
+          { title: "Энзимный пилинг и подготовка кожи", text: "Мягкий ферментный пилинг с папаином удаляет ороговевший слой. Тёплый компресс раскрывает поры для глубокого воздействия." },
+          { title: "Моделирующий скульптурный массаж", text: "Авторская французская техника — буккальный и пластифицирующий массаж прорабатывает мимические мышцы изнутри и снаружи." },
+          { title: "Лифтинг-маска с коллагеном", text: "Профессиональная альгинатная маска с морским коллагеном и пептидами подтягивает контур и разглаживает морщины." },
+          { title: "Сыворотка и защитный уход", text: "Антивозрастная сыворотка с ретинолом и гиалуроновой кислотой. Финальный SPF-крем для закрепления результата." }
+        ],
+        benefits: ["Видимый лифтинг-эффект с первого сеанса", "Разглаживание мимических морщин", "Моделирование овала лица", "Повышение упругости и тонуса кожи", "Глубокое питание дермы"],
+        ingredients: "Французская премиальная косметика, энзимный пилинг с папаином, альгинатная маска, морской коллаген, ретинол, гиалуроновая кислота",
+        image: "assets/services/Lifting%20Facial/lifting_cover.png",
+        thumbs: [
+          "assets/services/Lifting%20Facial/lifting_cover.png",
+          "assets/services/Lifting%20Facial/8A737493-6C69-4832-8478-D4C88D3FCFF1.JPG"
+        ],
+        variants: [
+          { duration: "90 min", price: 2550, sku: "LFF-90" }
+        ],
+        selectedVariantIndex: 0
+      },
+      {
+        id: "scrub",
+        title: "Pre-Tan Body Scrub",
+        category: "BEAUTY",
+        categoryRu: "Уход за телом",
+        colIndex: 3,
+        desc: "Мягкий отшелушивающий скраб для тела перед загаром. Делает кожу гладкой, бархатистой и обеспечивает ровный сияющий загар.",
+        fullStory: "Бережный отшелушивающий пилинг на основе кокосовой стружки, тростникового сахара и натуральных масел. Деликатно удаляет ороговевшие клетки, подготавливая кожу к ровному золотистому загару.",
+        ritualSteps: [
+          { title: "Распаривание кожи горячим полотенцем", text: "Горячие влажные полотенца с эвкалиптом раскрывают поры и смягчают ороговевший слой для эффективного пилинга." },
+          { title: "Скрабирование кокосовой стружкой", text: "Смесь кокосовой стружки, тростникового сахара и масла ши наносится круговыми движениями — мягкое удаление омертвевших клеток." },
+          { title: "Тёплый душ и тонизация", text: "Нежный тёплый душ смывает скраб. Тоник с экстрактом зелёного чая тонизирует и закрывает поры." },
+          { title: "Увлажняющее масло и SPF-защита", text: "Лёгкое масло с витамином E запечатывает влагу и создаёт идеальную базу для ровного и стойкого золотистого загара." }
+        ],
+        benefits: ["Гладкая бархатистая кожа", "Ровный и стойкий загар", "Удаление ороговевших клеток", "Глубокое увлажнение", "Подготовка кожи к тропическому солнцу"],
+        ingredients: "Кокосовая стружка, тростниковый сахар, масло ши, эвкалиптовое масло, экстракт зелёного чая, витамин E",
+        image: "assets/services/Pre-Tan%20Scrub/pre%20tan_hr.png",
+        thumbs: [
+          "assets/services/Pre-Tan%20Scrub/pre%20tan_hr.png"
+        ],
+        variants: [
+          { duration: "30 min", price: 750, sku: "SCRUB-30" },
+          { duration: "60 min", price: 1200, sku: "SCRUB-60" },
+          { duration: "90 min", price: 1800, sku: "SCRUB-90" }
+        ],
+        selectedVariantIndex: 1
+      }
+    ];
+
+    let cart = [];
+    let currentFilter = 'ALL';
+    let activeModalItem = null;
+    let activePageService = null;
+    let selectedGuestCount = 1;
+
+    function setDefaultDate() {
+      const today = new Date().toISOString().split('T')[0];
+      const dateInput = document.getElementById('bookingDate');
+      if (dateInput) dateInput.value = today;
+    }
+
+    // 1. Navigation Between Catalog and Dedicated Page
+    function navigateToCatalog() {
+      document.getElementById('catalogViewContainer').style.display = 'block';
+      document.getElementById('serviceDetailView').classList.remove('active');
+      document.getElementById('headerViewSwitcher').style.display = 'flex';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openServiceDetailPage(serviceId) {
+      const service = servicesData.find(s => s.id === serviceId);
+      if (!service) return;
+
+      activePageService = service;
+      activeModalItem = service;
+      pageGuestCount = 1;
+
+      // Populate dedicated page elements
+      document.getElementById('pageBreadcrumbCategory').textContent = service.categoryRu;
+      document.getElementById('pageBreadcrumbTitle').textContent = service.title;
+      document.getElementById('pageCategoryTag').textContent = service.category;
+      document.getElementById('pageTitle').textContent = service.title;
+      document.getElementById('pageDesc').textContent = service.desc;
+      document.getElementById('pageFullStory').textContent = service.fullStory;
+      document.getElementById('pageHeroImg').src = service.image;
+
+      // Render unique Ritual Steps
+      const stepsEl = document.getElementById('pageRitualSteps');
+      if (service.ritualSteps && service.ritualSteps.length) {
+        stepsEl.innerHTML = service.ritualSteps.map((step, idx) => `
+          <div class="ritual-step-item">
+            <div class="step-num">${idx + 1}</div>
+            <div class="step-text">
+              <strong>${step.title}</strong>
+              <p>${step.text}</p>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Render unique Benefits
+      const benefitsEl = document.getElementById('pageBenefitsGrid');
+      if (service.benefits && service.benefits.length) {
+        benefitsEl.innerHTML = service.benefits.map(b => `
+          <div class="benefit-item">✓ ${b}</div>
+        `).join('');
+      }
+
+      // Render unique Ingredients
+      const ingredientsEl = document.getElementById('pageIngredients');
+      if (service.ingredients) {
+        ingredientsEl.textContent = service.ingredients;
+      }
+
+      // Update sidebar ingredients hint
+      const sideIngEl = document.getElementById('sideIngredientsShort');
+      if (sideIngEl && service.ingredients) {
+        sideIngEl.textContent = service.ingredients.length > 80 
+          ? service.ingredients.substring(0, 80) + '…' 
+          : service.ingredients;
+      }
+
+      // Render Thumbs
+      const thumbsBox = document.getElementById('pageHeroThumbs');
+      if (service.thumbs && service.thumbs.length > 1) {
+        thumbsBox.style.display = 'flex';
+        thumbsBox.innerHTML = service.thumbs.map((imgUrl, idx) => `
+          <div class="service-hero-thumb ${idx === 0 ? 'active' : ''}" onclick="setPageMainImg('${imgUrl}', this)">
+            <img src="${imgUrl}" alt="">
+          </div>
+        `).join('');
+      } else {
+        thumbsBox.style.display = 'none';
+      }
+
+      // Reset guest chips
+      document.getElementById('pageGuest1').classList.add('active');
+      document.getElementById('pageGuest2').classList.remove('active');
+      document.getElementById('pageGuest3').classList.remove('active');
+
+      // Set default date
+      const today = new Date().toISOString().split('T')[0];
+      const pageDateInput = document.getElementById('pageBookingDate');
+      if (pageDateInput) pageDateInput.value = today;
+
+      // Render duration chips
+      renderPageDurationChips();
+      updatePageCalculations();
+
+      // Render Related treatments (smart cross-category)
+      renderRelatedTreatments(service.id, service.category);
+
+      // Show Page View
+      document.getElementById('catalogViewContainer').style.display = 'none';
+      document.getElementById('serviceDetailView').classList.add('active');
+      document.getElementById('headerViewSwitcher').style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function setPageMainImg(url, el) {
+      document.getElementById('pageHeroImg').src = url;
+      document.querySelectorAll('.service-hero-thumb').forEach(t => t.classList.remove('active'));
+      if (el) el.classList.add('active');
+    }
+
+    let pageGuestCount = 1;
+
+    function setPageGuestCount(count) {
+      pageGuestCount = count;
+      document.getElementById('pageGuest1').classList.toggle('active', count === 1);
+      document.getElementById('pageGuest2').classList.toggle('active', count === 2);
+      document.getElementById('pageGuest3').classList.toggle('active', count === 3);
+      updatePageCalculations();
+    }
+
+    function renderPageDurationChips() {
+      const container = document.getElementById('pageDurationChips');
+      container.innerHTML = activePageService.variants.map((v, idx) => `
+        <button class="page-dur-chip ${idx === activePageService.selectedVariantIndex ? 'active' : ''}"
+                onclick="selectPageDuration(${idx})">
+          ${v.duration} — ${v.price.toLocaleString('ru-RU')} ฿
+        </button>
+      `).join('');
+    }
+
+    function selectPageDuration(idx) {
+      activePageService.selectedVariantIndex = idx;
+      renderPageDurationChips();
+      updatePageCalculations();
+      selectDuration(activePageService.id, idx);
+    }
+
+    function updatePageCalculations() {
+      if (!activePageService) return;
+      const variant = activePageService.variants[activePageService.selectedVariantIndex];
+      const totalBase = variant.price * pageGuestCount;
+      const discounted = Math.round(totalBase * 0.8);
+
+      document.getElementById('pageBasePrice').textContent = `${totalBase.toLocaleString('ru-RU')} ฿`;
+      document.getElementById('pageDiscountPrice').textContent = `${discounted.toLocaleString('ru-RU')} ฿`;
+      document.getElementById('pageBtnStripePrice').textContent = `${discounted.toLocaleString('ru-RU')} THB`;
+    }
+
+    // Smart cross-category recommendations: 1 from same category + 2 from different categories
+    function renderRelatedTreatments(currentId, currentCategory) {
+      const container = document.getElementById('relatedProductsGrid');
+      
+      const sameCategory = servicesData.filter(s => s.id !== currentId && s.category === currentCategory);
+      const otherCategory = servicesData.filter(s => s.id !== currentId && s.category !== currentCategory);
+      
+      // Shuffle arrays for variety
+      const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
+      const samePick = shuffle([...sameCategory]).slice(0, 1);
+      const otherPick = shuffle([...otherCategory]).slice(0, 2);
+      const related = [...samePick, ...otherPick];
+
+      container.innerHTML = related.map(s => {
+        const v = s.variants[s.selectedVariantIndex];
+        const disc = Math.round(v.price * 0.8);
+        const durChips = s.variants.map(vr => `<span style="background: #FAF8F5; border: 1px solid rgba(33,26,18,0.1); padding: 2px 8px; border-radius: 4px; font-size: 10px; color: var(--coal-muted);">${vr.duration}</span>`).join('');
+        return `
+          <div class="product-card">
+            <div class="product-img-box" onclick="openServiceDetailPage('${s.id}')">
+              <span class="product-tag-badge">${s.category}</span>
+              <span class="discount-corner-badge">-20% Онлайн</span>
+              <img src="${s.image}" alt="${s.title}" class="product-img" loading="lazy">
+            </div>
+            <div class="product-body">
+              <h3 class="product-title" onclick="openServiceDetailPage('${s.id}')">${s.title}</h3>
+              <p class="product-desc">${s.desc}</p>
+              <div style="display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 10px;">${durChips}</div>
+              <div class="product-footer">
+                <div class="price-box">
+                  <div class="price-row-display">
+                    <span class="price-value">${v.price.toLocaleString('ru-RU')} ฿</span>
+                    <span class="price-discount-hint">(${disc.toLocaleString('ru-RU')} ฿)</span>
+                  </div>
+                </div>
+                <button class="book-action-btn" onclick="openServiceDetailPage('${s.id}')">Подробнее</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function addCurrentPageServiceToCart() {
+      if (!activePageService) return;
+      quickAddToCart(activePageService.id);
+    }
+
+    function openStripeFromPage() {
+      openBookingModal(activePageService.id);
+      openStripeCheckoutModal();
+    }
+
+    function openFreeBookingModalFromPage() {
+      openBookingModal(activePageService.id);
+    }
+
+    function openCurrentModalAsDedicatedPage() {
+      if (!activeModalItem) return;
+      closeAllModals();
+      openServiceDetailPage(activeModalItem.id);
+    }
+
+    // 2. Render Catalog Grid
+    function renderGrid() {
+      const grid = document.getElementById('productsGrid');
+      const filtered = currentFilter === 'ALL' 
+        ? servicesData 
+        : servicesData.filter(s => s.category === currentFilter);
+
+      grid.innerHTML = filtered.map((s) => {
+        const activeVariant = s.variants[s.selectedVariantIndex];
+        const discountedPrice = Math.round(activeVariant.price * 0.8);
+        return `
+          <div class="product-card" id="card-${s.id}">
+            <div class="product-img-box" onclick="openServiceDetailPage('${s.id}')">
+              <span class="product-tag-badge">${s.category}</span>
+              <span class="discount-corner-badge">-20% Онлайн</span>
+              <img src="${s.image}" alt="${s.title}" class="product-img" loading="lazy">
+              <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart('${s.id}')" title="Добавить в корзину">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              </button>
+            </div>
+
+            <div class="product-body">
+              <h3 class="product-title" onclick="openServiceDetailPage('${s.id}')">${s.title}</h3>
+              <p class="product-desc">${s.desc}</p>
+
+              <!-- Duration Selector Chips -->
+              <div class="duration-chips-wrapper">
+                <span class="chips-label">Длительность сеанса:</span>
+                <div class="duration-chips">
+                  ${s.variants.map((v, vIdx) => `
+                    <button class="duration-chip ${vIdx === s.selectedVariantIndex ? 'active' : ''}" 
+                            onclick="selectDuration('${s.id}', ${vIdx})">
+                      ${v.duration}
+                    </button>
+                  `).join('')}
+                </div>
+              </div>
+
+              <div class="product-footer">
+                <div class="price-box">
+                  <span class="price-label">Стоимость:</span>
+                  <div class="price-row-display">
+                    <span class="price-value" id="price-val-${s.id}">${activeVariant.price.toLocaleString('ru-RU')} ฿</span>
+                    <span class="price-discount-hint">(${discountedPrice.toLocaleString('ru-RU')} ฿ онлайн)</span>
+                  </div>
+                </div>
+
+                <div class="book-actions-group">
+                  <button class="view-detail-btn" onclick="openServiceDetailPage('${s.id}')">Страница</button>
+                  <button class="book-action-btn" onclick="openBookingModal('${s.id}')">
+                    <span>Запись</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 3. Render 3-Column Spa Menu
+    function render3Columns() {
+      const col1 = document.getElementById('colList1');
+      const col2 = document.getElementById('colList2');
+      const col3 = document.getElementById('colList3');
+
+      const renderItemsForCol = (colNum) => {
+        return servicesData.filter(s => s.colIndex === colNum).map(s => {
+          const activeVariant = s.variants[s.selectedVariantIndex];
+          return `
+            <div class="menu-item" id="menu-item-${s.id}">
+              <div class="menu-item-header">
+                <div class="menu-item-title" onclick="openServiceDetailPage('${s.id}')">${s.title}</div>
+                <span class="menu-item-price-badge" id="menu-price-${s.id}">${activeVariant.price.toLocaleString('ru-RU')} ฿</span>
+              </div>
+
+              <div class="menu-item-durations">
+                ${s.variants.map((v, vIdx) => `
+                  <button class="menu-dur-btn ${vIdx === s.selectedVariantIndex ? 'active' : ''}" 
+                          onclick="selectDuration('${s.id}', ${vIdx})">
+                    ${v.duration}
+                  </button>
+                `).join('')}
+              </div>
+
+              <div class="menu-item-desc">${s.desc}</div>
+
+              <div class="menu-item-action">
+                <button class="view-detail-btn" style="padding: 4px 10px; font-size: 11.5px;" onclick="openServiceDetailPage('${s.id}')">Страница</button>
+                <button class="book-action-btn" style="padding: 5px 12px; font-size: 11.5px;" onclick="openBookingModal('${s.id}')">Записаться</button>
+              </div>
+            </div>
+          `;
+        }).join('');
+      };
+
+      col1.innerHTML = renderItemsForCol(1);
+      col2.innerHTML = renderItemsForCol(2);
+      col3.innerHTML = renderItemsForCol(3);
+    }
+
+    function selectDuration(serviceId, variantIndex) {
+      const service = servicesData.find(s => s.id === serviceId);
+      if (!service) return;
+
+      service.selectedVariantIndex = variantIndex;
+      const variant = service.variants[variantIndex];
+      const discountedPrice = Math.round(variant.price * 0.8);
+
+      const gridPriceEl = document.getElementById(`price-val-${serviceId}`);
+      if (gridPriceEl) {
+        gridPriceEl.textContent = `${variant.price.toLocaleString('ru-RU')} ฿`;
+        const hint = gridPriceEl.nextElementSibling;
+        if (hint) hint.textContent = `(${discountedPrice.toLocaleString('ru-RU')} ฿ онлайн)`;
+      }
+
+      const cardEl = document.getElementById(`card-${serviceId}`);
+      if (cardEl) {
+        const chips = cardEl.querySelectorAll('.duration-chip');
+        chips.forEach((c, idx) => {
+          if (idx === variantIndex) c.classList.add('active');
+          else c.classList.remove('active');
+        });
+      }
+
+      const menuPriceEl = document.getElementById(`menu-price-${serviceId}`);
+      if (menuPriceEl) menuPriceEl.textContent = `${variant.price.toLocaleString('ru-RU')} ฿`;
+
+      const menuItemEl = document.getElementById(`menu-item-${serviceId}`);
+      if (menuItemEl) {
+        const durBtns = menuItemEl.querySelectorAll('.menu-dur-btn');
+        durBtns.forEach((b, idx) => {
+          if (idx === variantIndex) b.classList.add('active');
+          else b.classList.remove('active');
+        });
+      }
+
+      if (activeModalItem && activeModalItem.id === serviceId) {
+        updateModalCalculations();
+      }
+    }
+
+    function filterCategory(category, buttonEl) {
+      currentFilter = category;
+      document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+      if (buttonEl) buttonEl.classList.add('active');
+      renderGrid();
+    }
+
+    function setViewMode(mode) {
+      const btnGrid = document.getElementById('btnModeGrid');
+      const btnCols = document.getElementById('btnModeCols');
+      const gridEl = document.getElementById('productsGrid');
+      const colsEl = document.getElementById('menuColumnsLayout');
+
+      if (mode === 'grid') {
+        btnGrid.classList.add('active');
+        btnCols.classList.remove('active');
+        gridEl.style.display = 'grid';
+        colsEl.style.display = 'none';
+        renderGrid();
+      } else {
+        btnCols.classList.add('active');
+        btnGrid.classList.remove('active');
+        gridEl.style.display = 'none';
+        colsEl.style.display = 'grid';
+        render3Columns();
+      }
+    }
+
+    // 4. Modal Booking Logic
+    function openBookingModal(serviceId) {
+      activeModalItem = servicesData.find(s => s.id === serviceId);
+      if (!activeModalItem) return;
+
+      document.getElementById('modalMainImg').src = activeModalItem.image;
+      document.getElementById('modalCategory').textContent = activeModalItem.category;
+      document.getElementById('modalTitle').textContent = activeModalItem.title;
+      document.getElementById('modalDesc').textContent = activeModalItem.desc;
+
+      const thumbsContainer = document.getElementById('modalThumbs');
+      if (activeModalItem.thumbs && activeModalItem.thumbs.length > 1) {
+        thumbsContainer.style.display = 'flex';
+        thumbsContainer.innerHTML = activeModalItem.thumbs.map((imgUrl, i) => `
+          <div class="modal-thumb ${i === 0 ? 'active' : ''}" onclick="setModalMainImg('${imgUrl}', this)">
+            <img src="${imgUrl}" alt="">
+          </div>
+        `).join('');
+      } else {
+        thumbsContainer.style.display = 'none';
+      }
+
+      renderModalDurationButtons();
+      updateModalCalculations();
+      setDefaultDate();
+
+      document.getElementById('quickViewModal').classList.add('is-open');
+    }
+
+    function setModalMainImg(url, thumbEl) {
+      document.getElementById('modalMainImg').src = url;
+      document.querySelectorAll('.modal-thumb').forEach(t => t.classList.remove('active'));
+      if (thumbEl) thumbEl.classList.add('active');
+    }
+
+    function renderModalDurationButtons() {
+      const container = document.getElementById('modalDurationButtons');
+      container.innerHTML = activeModalItem.variants.map((v, idx) => `
+        <button class="duration-chip ${idx === activeModalItem.selectedVariantIndex ? 'active' : ''}"
+                onclick="selectModalDuration(${idx})">
+          ${v.duration}
+        </button>
+      `).join('');
+    }
+
+    function selectModalDuration(idx) {
+      activeModalItem.selectedVariantIndex = idx;
+      renderModalDurationButtons();
+      selectDuration(activeModalItem.id, idx);
+      updateModalCalculations();
+    }
+
+    function setGuestCount(count) {
+      selectedGuestCount = count;
+      document.getElementById('guest1').classList.toggle('active', count === 1);
+      document.getElementById('guest2').classList.toggle('active', count === 2);
+      document.getElementById('guest3').classList.toggle('active', count === 3);
+      updateModalCalculations();
+    }
+
+    function updateModalCalculations() {
+      if (!activeModalItem) return;
+      const variant = activeModalItem.variants[activeModalItem.selectedVariantIndex];
+      const totalBasePrice = variant.price * selectedGuestCount;
+      const discount = Math.round(totalBasePrice * 0.20);
+      const onlineTotal = totalBasePrice - discount;
+      const guestsText = selectedGuestCount === 1 ? '1 гость' : (selectedGuestCount === 2 ? '2 гостя' : '3+ гостей');
+      
+      document.getElementById('calcGuestsLabel').textContent = guestsText;
+      document.getElementById('calcBasePrice').textContent = `${totalBasePrice.toLocaleString('ru-RU')} THB`;
+      document.getElementById('calcDiscountVal').textContent = `−${discount.toLocaleString('ru-RU')} THB`;
+      document.getElementById('calcOnlineTotal').textContent = `${onlineTotal.toLocaleString('ru-RU')} THB`;
+      document.getElementById('btnStripePrice').textContent = `${onlineTotal.toLocaleString('ru-RU')} THB`;
+    }
+
+    // 5. Stripe Checkout
+    function openStripeCheckoutModal() {
+      const name = document.getElementById('clientName').value.trim() || 'Гость';
+      const date = document.getElementById('bookingDate').value;
+      const timeSlot = document.getElementById('bookingTimeSlot').value;
+
+      const variant = activeModalItem.variants[activeModalItem.selectedVariantIndex];
+      const totalBase = variant.price * selectedGuestCount;
+      const discount = Math.round(totalBase * 0.2);
+      const totalOnline = totalBase - discount;
+
+      document.getElementById('stripeModalAmount').textContent = `${totalOnline.toLocaleString('ru-RU')}.00 ฿`;
+      document.getElementById('stripeModalServiceTitle').textContent = activeModalItem.title;
+      document.getElementById('stripeModalServiceMeta').textContent = `${variant.duration} • ${selectedGuestCount} гость • Раваи • ${date}, ${timeSlot}`;
+      document.getElementById('stripeModalBasePrice').textContent = `${totalBase.toLocaleString('ru-RU')} THB`;
+      document.getElementById('stripeModalDiscount').textContent = `−${discount.toLocaleString('ru-RU')} THB`;
+      document.getElementById('stripeModalFinalPrice').textContent = `${totalOnline.toLocaleString('ru-RU')} THB`;
+      document.getElementById('stripePayBtnAmount').textContent = `${totalOnline.toLocaleString('ru-RU')} ฿`;
+      document.getElementById('stripeCardholder').value = name.toUpperCase();
+
+      closeAllModals();
+      document.getElementById('stripeCheckoutModal').classList.add('is-open');
+    }
+
+    function simulateStripePaymentSuccess() {
+      const variant = activeModalItem.variants[activeModalItem.selectedVariantIndex];
+      const totalBase = variant.price * selectedGuestCount;
+      const totalOnline = totalBase - Math.round(totalBase * 0.2);
+      const date = document.getElementById('bookingDate').value;
+      const timeSlot = document.getElementById('bookingTimeSlot').value;
+      const orderNumber = 'NUA-' + Math.floor(100000 + Math.random() * 900000);
+
+      document.getElementById('successTitle').textContent = '✅ Оплата и запись подтверждены!';
+      document.getElementById('successDesc').textContent = 'Ваш платеж успешно проведен через Stripe. Мастера забронированы.';
+      document.getElementById('successOrderBox').innerHTML = `
+        <div><strong>Номер брони:</strong> #${orderNumber}</div>
+        <div><strong>Услуга:</strong> ${activeModalItem.title} (${variant.duration})</div>
+        <div><strong>Гости:</strong> ${selectedGuestCount} чел.</div>
+        <div><strong>Дата и слот:</strong> ${date}, ${timeSlot}</div>
+        <div><strong>Локация:</strong> Салон IAMNUA Раваи (Fisherman Way)</div>
+        <div><strong>Оплачено онлайн:</strong> <span style="color: #166534; font-weight: 700;">${totalOnline.toLocaleString('ru-RU')} THB</span> (скидка 20% применена)</div>
+      `;
+
+      closeAllModals();
+      document.getElementById('successModal').classList.add('is-open');
+    }
+
+    function submitFreeBookingDirect() {
+      const name = document.getElementById('clientName').value.trim() || 'Гость';
+      const phone = document.getElementById('clientPhone').value.trim() || 'Телефон не указан';
+      const date = document.getElementById('bookingDate').value;
+      const timeSlot = document.getElementById('bookingTimeSlot').value;
+
+      const variant = activeModalItem.variants[activeModalItem.selectedVariantIndex];
+      const total = variant.price * selectedGuestCount;
+      const orderNumber = 'REQ-' + Math.floor(100000 + Math.random() * 900000);
+
+      document.getElementById('successTitle').textContent = '✅ Ваша заявка успешно принята!';
+      document.getElementById('successDesc').textContent = 'Информация передана администраторам. Мы свяжемся с вами в течение 5 минут для подтверждения времени.';
+      document.getElementById('successOrderBox').innerHTML = `
+        <div><strong>Номер заявки:</strong> #${orderNumber}</div>
+        <div><strong>Услуга:</strong> ${activeModalItem.title} (${variant.duration})</div>
+        <div><strong>Гости:</strong> ${selectedGuestCount} чел.</div>
+        <div><strong>Дата и слот:</strong> ${date}, ${timeSlot}</div>
+        <div><strong>Клиент:</strong> ${name} (${phone})</div>
+        <div><strong>Локация:</strong> Салон IAMNUA Раваи (Fisherman Way)</div>
+        <div><strong>Стоимость:</strong> ${total.toLocaleString('ru-RU')} THB (оплата в салоне)</div>
+      `;
+
+      closeAllModals();
+      document.getElementById('successModal').classList.add('is-open');
+    }
+
+    function closeAllModals() {
+      document.getElementById('quickViewModal').classList.remove('is-open');
+      document.getElementById('stripeCheckoutModal').classList.remove('is-open');
+      document.getElementById('successModal').classList.remove('is-open');
+    }
+
+    // 6. Navigation Menu
+    function openNavMenu() { document.getElementById('menuOverlay').classList.add('is-open'); }
+    function closeNavMenu() { document.getElementById('menuOverlay').classList.remove('is-open'); }
+    function closeNavMenuOnOverlay(e) { if (e.target.id === 'menuOverlay') closeNavMenu(); }
+
+    // 7. Cart Drawer
+    function quickAddToCart(serviceId) {
+      const service = servicesData.find(s => s.id === serviceId);
+      if (!service) return;
+      const variant = service.variants[service.selectedVariantIndex];
+      
+      const existing = cart.find(i => i.serviceId === service.id && i.duration === variant.duration);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({
+          serviceId: service.id,
+          title: service.title,
+          category: service.category,
+          image: service.image,
+          duration: variant.duration,
+          price: variant.price,
+          sku: variant.sku,
+          qty: 1
+        });
+      }
+      updateCartUI();
+      showToast(`«${service.title}» (${variant.duration}) добавлен в корзину`);
+    }
+
+    function updateCartUI() {
+      const countEl = document.getElementById('cartCount');
+      const drawerCountEl = document.getElementById('drawerCount');
+      const drawerItemsEl = document.getElementById('drawerItems');
+      const totalPriceEl = document.getElementById('drawerTotalPrice');
+
+      const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
+      const totalRaw = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+      const totalDiscounted = Math.round(totalRaw * 0.8);
+
+      countEl.textContent = totalItems;
+      drawerCountEl.textContent = totalItems;
+      totalPriceEl.textContent = `${totalDiscounted.toLocaleString('ru-RU')} ฿ (${totalRaw.toLocaleString('ru-RU')} ฿ без скидки)`;
+
+      if (cart.length === 0) {
+        drawerItemsEl.innerHTML = `
+          <div style="text-align: center; padding: 50px 20px; color: var(--coal-muted);">
+            <svg style="width: 44px; height: 44px; margin-bottom: 8px; opacity: 0.3;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <p>Ваша корзина пуста.<br>Выберите массаж или спа-ритуал.</p>
+          </div>
+        `;
+        return;
+      }
+
+      drawerItemsEl.innerHTML = cart.map((item, index) => `
+        <div class="cart-item">
+          <img src="${item.image}" alt="${item.title}" class="cart-item-img">
+          <button class="cart-item-remove" onclick="removeCartItem(${index})" title="Удалить">✕</button>
+          <div class="cart-item-info">
+            <div class="cart-item-title">${item.title}</div>
+            <div class="cart-item-duration">⏱ ${item.duration}</div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+              <span class="cart-item-price">${(item.price * item.qty).toLocaleString('ru-RU')} ฿</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function removeCartItem(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function openCartDrawer() { document.getElementById('cartDrawerOverlay').classList.add('is-open'); }
+    function closeCartDrawer() { document.getElementById('cartDrawerOverlay').classList.remove('is-open'); }
+    function closeCartDrawerOnOverlay(e) { if (e.target.id === 'cartDrawerOverlay') closeCartDrawer(); }
+
+    function showToast(text) {
+      const toast = document.getElementById('toastMsg');
+      toast.textContent = `✓ ${text}`;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    function proceedCartStripeCheckout() {
+      if (cart.length === 0) return;
+      closeCartDrawer();
+      const totalRaw = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+      const totalDiscounted = Math.round(totalRaw * 0.8);
+      const itemsList = cart.map(i => `${i.title} (${i.duration}) x${i.qty}`).join(', ');
+
+      document.getElementById('stripeModalAmount').textContent = `${totalDiscounted.toLocaleString('ru-RU')}.00 ฿`;
+      document.getElementById('stripeModalServiceTitle').textContent = 'Заказ услуг из корзины';
+      document.getElementById('stripeModalServiceMeta').textContent = `${itemsList} • Раваи`;
+      document.getElementById('stripeModalBasePrice').textContent = `${totalRaw.toLocaleString('ru-RU')} THB`;
+      document.getElementById('stripeModalDiscount').textContent = `−${(totalRaw - totalDiscounted).toLocaleString('ru-RU')} THB`;
+      document.getElementById('stripeModalFinalPrice').textContent = `${totalDiscounted.toLocaleString('ru-RU')} THB`;
+      document.getElementById('stripePayBtnAmount').textContent = `${totalDiscounted.toLocaleString('ru-RU')} ฿`;
+
+      document.getElementById('stripeCheckoutModal').classList.add('is-open');
+    }
+
+    function proceedCartFreeBooking() {
+      if (cart.length === 0) return;
+      closeCartDrawer();
+      const totalRaw = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+      const itemsList = cart.map(i => `• ${i.title} (${i.duration}) x${i.qty} — ${i.price * i.qty} ฿`).join('<br>');
+      const orderNumber = 'CART-' + Math.floor(100000 + Math.random() * 900000);
+
+      document.getElementById('successTitle').textContent = '✅ Заявка на корзину принята!';
+      document.getElementById('successDesc').textContent = 'Менеджер свяжется с вами для согласования времени и расписания мастеров.';
+      document.getElementById('successOrderBox').innerHTML = `
+        <div><strong>Номер заявки:</strong> #${orderNumber}</div>
+        <div><strong>Выбранные процедуры:</strong><br>${itemsList}</div>
+        <div><strong>Локация:</strong> Салон IAMNUA Раваи</div>
+        <div><strong>Итого к оплате на месте:</strong> ${totalRaw.toLocaleString('ru-RU')} THB</div>
+      `;
+
+      document.getElementById('successModal').classList.add('is-open');
+      cart = [];
+      updateCartUI();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderGrid();
+      render3Columns();
+      updateCartUI();
+      setDefaultDate();
+    });
+  </script>
+</body>
+</html>
