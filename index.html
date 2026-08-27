@@ -574,11 +574,12 @@
       padding-top: 14px;
       border-top: 1px solid var(--coal-border);
     }
-    .price-box { display: flex; flex-direction: column; }
-    .price-label { font-size: 10.5px; color: var(--coal-muted); text-transform: uppercase; }
+    .price-box { display: flex; flex-direction: column; gap: 1px; }
+    .price-label { font-size: 10px; color: var(--coal-muted); text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
     .price-row-display { display: flex; align-items: baseline; gap: 6px; }
-    .price-value { font-size: 19px; font-weight: 700; color: var(--coal); }
-    .price-discount-hint { font-size: 11px; color: var(--green-accent); font-weight: 600; }
+    .price-value-online { font-size: 19px; font-weight: 800; color: var(--coal); }
+    .price-value-base { font-size: 12.5px; color: #94A3B8; text-decoration: line-through; font-weight: 500; }
+    .price-discount-sub { font-size: 10.5px; color: var(--green-accent); font-weight: 700; display: flex; align-items: center; gap: 3px; line-height: 1.2; margin-top: 1px; }
 
     .book-actions-group {
       display: flex;
@@ -686,12 +687,17 @@
     .menu-item-price-badge {
       background: var(--coal);
       color: #FFFFFF !important;
-      padding: 3px 10px;
+      padding: 4px 10px;
       border-radius: var(--radius-full);
       font-size: 12px;
       font-weight: 700;
       white-space: nowrap;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 5px;
     }
+    .menu-price-online { color: #86EFAC; font-weight: 800; font-size: 12px; }
+    .menu-price-base { color: rgba(255, 255, 255, 0.5); text-decoration: line-through; font-size: 11px; font-weight: 500; }
 
     .menu-item-durations { display: flex; gap: 6px; margin-bottom: 6px; }
     .menu-dur-btn {
@@ -2490,9 +2496,10 @@
               <div class="product-footer">
                 <div class="price-box">
                   <div class="price-row-display">
-                    <span class="price-value">${v.price.toLocaleString('ru-RU')} ฿</span>
-                    <span class="price-discount-hint">(${disc.toLocaleString('ru-RU')} ฿)</span>
+                    <span class="price-value-online">${disc.toLocaleString('ru-RU')} ฿</span>
+                    <span class="price-value-base">${v.price.toLocaleString('ru-RU')} ฿</span>
                   </div>
+                  <div class="price-discount-sub">🟢 онлайн-цена (-20%)</div>
                 </div>
                 <button class="book-action-btn" onclick="openServiceDetailPage('${s.id}')">Подробнее</button>
               </div>
@@ -2564,9 +2571,10 @@
                 <div class="price-box">
                   <span class="price-label">Стоимость:</span>
                   <div class="price-row-display">
-                    <span class="price-value" id="price-val-${s.id}">${activeVariant.price.toLocaleString('ru-RU')} ฿</span>
-                    <span class="price-discount-hint">(${discountedPrice.toLocaleString('ru-RU')} ฿ онлайн)</span>
+                    <span class="price-value-online" id="price-val-${s.id}">${discountedPrice.toLocaleString('ru-RU')} ฿</span>
+                    <span class="price-value-base" id="price-base-${s.id}">${activeVariant.price.toLocaleString('ru-RU')} ฿</span>
                   </div>
+                  <div class="price-discount-sub">🟢 онлайн-цена (-20%)</div>
                 </div>
 
                 <div class="book-actions-group">
@@ -2592,11 +2600,15 @@
       const renderItemsForCol = (colNum) => {
         return servicesData.filter(s => s.colIndex === colNum).map(s => {
           const activeVariant = s.variants[s.selectedVariantIndex];
+          const discountedPrice = Math.round(activeVariant.price * 0.8);
           return `
             <div class="menu-item" id="menu-item-${s.id}">
               <div class="menu-item-header">
                 <div class="menu-item-title" onclick="openServiceDetailPage('${s.id}')">${s.title}</div>
-                <span class="menu-item-price-badge" id="menu-price-${s.id}">${activeVariant.price.toLocaleString('ru-RU')} ฿</span>
+                <div class="menu-item-price-badge" id="menu-price-${s.id}">
+                  <span class="menu-price-online">${discountedPrice.toLocaleString('ru-RU')} ฿</span>
+                  <span class="menu-price-base">${activeVariant.price.toLocaleString('ru-RU')} ฿</span>
+                </div>
               </div>
 
               <div class="menu-item-durations">
@@ -2633,10 +2645,12 @@
       const discountedPrice = Math.round(variant.price * 0.8);
 
       const gridPriceEl = document.getElementById(`price-val-${serviceId}`);
+      const gridBaseEl = document.getElementById(`price-base-${serviceId}`);
       if (gridPriceEl) {
-        gridPriceEl.textContent = `${variant.price.toLocaleString('ru-RU')} ฿`;
-        const hint = gridPriceEl.nextElementSibling;
-        if (hint) hint.textContent = `(${discountedPrice.toLocaleString('ru-RU')} ฿ онлайн)`;
+        gridPriceEl.textContent = `${discountedPrice.toLocaleString('ru-RU')} ฿`;
+      }
+      if (gridBaseEl) {
+        gridBaseEl.textContent = `${variant.price.toLocaleString('ru-RU')} ฿`;
       }
 
       const cardEl = document.getElementById(`card-${serviceId}`);
@@ -2649,7 +2663,12 @@
       }
 
       const menuPriceEl = document.getElementById(`menu-price-${serviceId}`);
-      if (menuPriceEl) menuPriceEl.textContent = `${variant.price.toLocaleString('ru-RU')} ฿`;
+      if (menuPriceEl) {
+        menuPriceEl.innerHTML = `
+          <span class="menu-price-online">${discountedPrice.toLocaleString('ru-RU')} ฿</span>
+          <span class="menu-price-base">${variant.price.toLocaleString('ru-RU')} ฿</span>
+        `;
+      }
 
       const menuItemEl = document.getElementById(`menu-item-${serviceId}`);
       if (menuItemEl) {
