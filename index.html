@@ -470,30 +470,7 @@
       z-index: 2;
     }
 
-    .quick-add-btn {
-      position: absolute;
-      bottom: 14px;
-      right: 14px;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: #FFFFFF;
-      color: var(--coal);
-      border: 1px solid var(--coal-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-      transition: var(--transition);
-      z-index: 2;
-    }
-    .quick-add-btn:hover {
-      background: var(--terra);
-      border-color: var(--terra);
-      color: #FFFFFF;
-      transform: scale(1.1);
-    }
+
 
     .product-body {
       padding: 22px;
@@ -602,18 +579,26 @@
     }
     .book-action-btn:hover { background: var(--terra-hover); transform: scale(1.03); }
 
-    .view-detail-btn {
+    .card-cart-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
       background: #FAF8F5;
       border: 1px solid var(--coal-border);
       color: var(--coal);
-      padding: 8px 12px;
-      border-radius: var(--radius-full);
-      font-size: 12px;
-      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
       transition: var(--transition);
+      flex-shrink: 0;
     }
-    .view-detail-btn:hover { background: var(--coal); color: #FFFFFF; }
+    .card-cart-btn:hover {
+      background: var(--terra);
+      border-color: var(--terra);
+      color: #FFFFFF;
+      transform: scale(1.08);
+    }
 
     /* ==========================================================================
        VIEW 2: 3-COLUMN SPA MENU LAYOUT
@@ -2501,7 +2486,12 @@
                   </div>
                   <div class="price-discount-sub">🟢 онлайн-цена (-20%)</div>
                 </div>
-                <button class="book-action-btn" onclick="openServiceDetailPage('${s.id}')">Подробнее</button>
+                <div class="book-actions-group">
+                  <button class="card-cart-btn" onclick="event.stopPropagation(); quickAddToCart('${s.id}')" title="Добавить в корзину">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                  </button>
+                  <button class="book-action-btn" onclick="openServiceDetailPage('${s.id}')">Подробнее</button>
+                </div>
               </div>
             </div>
           </div>
@@ -2545,9 +2535,6 @@
               <span class="product-tag-badge">${s.category}</span>
               <span class="discount-corner-badge">-20% Онлайн</span>
               <img src="${s.image}" alt="${s.title}" class="product-img" loading="lazy">
-              <button class="quick-add-btn" onclick="event.stopPropagation(); quickAddToCart('${s.id}')" title="Добавить в корзину">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-              </button>
             </div>
 
             <div class="product-body">
@@ -2578,7 +2565,9 @@
                 </div>
 
                 <div class="book-actions-group">
-                  <button class="view-detail-btn" onclick="openServiceDetailPage('${s.id}')">Страница</button>
+                  <button class="card-cart-btn" onclick="event.stopPropagation(); quickAddToCart('${s.id}')" title="Добавить в корзину">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                  </button>
                   <button class="book-action-btn" onclick="openBookingModal('${s.id}')">
                     <span>Запись</span>
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -2623,7 +2612,9 @@
               <div class="menu-item-desc">${s.desc}</div>
 
               <div class="menu-item-action">
-                <button class="view-detail-btn" style="padding: 4px 10px; font-size: 11.5px;" onclick="openServiceDetailPage('${s.id}')">Страница</button>
+                <button class="card-cart-btn" style="width: 30px; height: 30px;" onclick="event.stopPropagation(); quickAddToCart('${s.id}')" title="Добавить в корзину">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                </button>
                 <button class="book-action-btn" style="padding: 5px 12px; font-size: 11.5px;" onclick="openBookingModal('${s.id}')">Записаться</button>
               </div>
             </div>
